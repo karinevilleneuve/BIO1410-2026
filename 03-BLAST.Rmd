@@ -1,124 +1,165 @@
-# Tableau de mes ASVs et BLAST
+# Vos ASVs et BLAST
 
-Vous avez vue en classe une figure représentant l'abondance relative des principaux genres bactériens présents sous la langue ainsi que sur la paume de la main dominante de chacun des scientifiques de votre classe. Vous aimeriez maintenant générer une figure similaire à celle présentée en classe mais comprenant uniquement vos échantillons. Pour ce faire, vous devrez utiliser vos nouvelles connaissances des différentes fonctions R! 
+## Vos ASVs
+
+Vous avez vue en classe une figure représentant l'abondance relative des principaux genres bactériens présents sous la langue ainsi que sur la paume de la main dominante de chacun des scientifiques de votre classe. Vous aimeriez maintenant générer une figure similaire à celle présentée en classe mais comprenant uniquement vos échantillons et incluant l'ASV. Pour ce faire, vous devrez utiliser vos nouvelles connaissances des différentes fonctions R! 
 
 
-Librairies que vous devriez utiliser et fonctions pour télécharger le tableau de données : 
+Commencez pas créer un nouveau document de type R markdown oũ vous pouvez votre script avec ces commandes qui installerons puis chargerons les librairies que vous devriez avoir à utiliser et chargerons le tableau de données. 
 
 ```{r, eval=FALSE}
+# Installer les librairies 
+install.packages("devtools")
 install.packages("randomcoloR")
 install.packages("ggplot2")
 install.packages("dplyr")
+install.packages("forcats")
 
+# Charger les librairies 
 library(randomcoloR)
 library(ggplot2)
 library(dplyr)
+library(forcats)
+library(devtools)
+install_github("helixcn/seqRFLP")
+library("seqRFLP")
 
-
+# Charger le tableau de données 
+df_raw = read.csv("https://raw.githubusercontent.com/karinevilleneuve/BIO1410-2026/refs/heads/main/data/bio1410_2026_ADN.csv", header = TRUE)
 ```
 
-avec les librairies qui vous seront utiles ains 
 
-1. Créer un nouveau document de type R markdown. 
+Maintenant que vous avez importé le tableau de données, vous devez utiliser R pour réaliser chacune de des étapes suivantes. Pour vous aidez vous pouvez utiliser l'intelligence artificielle, questionner vos démonstratrices, revoir les fonctiosn présentées précédemment, analyser le code des sections suivante, etc. Ci-dessous vous trouverez une des solutions possibles pour compléter chacune des étapes dans un block chaché, simplement appuyer sur **▶ Code ** pour le révéler. Il ya plus d"une façon d'arriver à un même résultat alors n'hésitez pas à essayer et comparer diverses méthodes. 
 
-2. Insérer un premier bloc de code R pour charger les librairies nécessaires 
+1. Filtrer le tableau de données pour conserver uniquement les séquences appartenant à votre scientifique. 
 
-Bloc de code 1 : Installation des packages/libraires 
+2. Puisque noous voulons illustrer uniquement le 10 genres bactériens les plus abondant, il faut, pour chaque région, grouper ensemble les ASVs appartenement à un même genre et additionner leur valeur d'abondance. Les valeurs obtenues doivent ensuite être transformées en abondance relative. Finalement, les genres bactériens qui ne font pas partie des 10 genres les plus abondants doivent être regroupés sous la catégories "Autres". 
 
-3. Créer un second bloc de code R et y insérer chacune des commandes suivantes requises pour effectuer chacune des opérations 
+3. Générer le graphique. 
 
-a. Récupérer le fichier csv à partir du lien suivant : 
 
-Solution : 
+**Étape 1. Filtrer le tableau de données** 
+
 ```{r, eval = FALSE, class.source="fold-hide"}
-test 
+#### ---- Code  ---- ####
+
+unique(df_raw$Scientifique) # (1)
+df_sub = subset(df_raw, Scientifique == "") # (2) 
+
+#### ---- explication  ---- ####
+
+# (1) Afficher les différentes options de noms de scientifique 
+# (2) Filter le tableau de données en inscrivant entre les guillements le nom de la scientifique 
 ```
 
+**Étape 2. Grouper et calculer l'abondance relative**
 
+```{r, eval = FALSE, class.source="fold-hide"}
+#### ---- Code  ---- ####
 
+df_abond_rel = df_sub %>% 
+  filter(Abundance > 0) %>% # (1)
+  group_by(Source) %>% # (2)
+  mutate(Abondance_relat = Abundance / sum(Abundance)) %>% # (3) 
+  ungroup()
 
-À la première ligne du code, copier/coller le nom de votre scientifique à partir de la liste des scienfitiques disponible après les blocs des code. Attention, assurez-vous **de ne pas** avoir d'espace entre les guillemets et le nom. 
+valider = df_abond_rel %>% # (4) 
+  group_by(Source) %>%
+  summarise(Total = sum(Abondance_relat)) 
 
-6. Exécuter les commandes en appuyant sur le bouton vert en haut à droite du bloc de code (<font color='green'> ▶ </font>). 
+#### ---- explication  ---- ####
 
+# (1) Puisqu'il est impossible de diviser 0, nous retirons les ASVs qui ont une abondance de 0 
 
+# (2) Pour réaliser les opérations mathématiquement séparémment pour chaque région nous devons 
+#     utilisons la fonction group_by() pour indiquer à R dans quel colonne se trouve nos catégories (Régions)
+#     qu'il doit traiter séparémment.
 
-Bloc de code 2 : Script pour obtenir vos données
-```{r, eval=FALSE}
-# Définir le nom de votre scientifique 
-ma_scientifique = "Abigail A. Salyers"
+# (3) Pour obtenir l'abondance relative nous créons une nouvelle colonne "Abondance_relat" qui est 
+#     le résultats de Abundance / sum(Abundance)
 
-# Importer le tableau de données
-tableau = read.table(file = "bio1410_2024.csv", sep=",", header=TRUE, check.names=FALSE) 
-# Définir le rang taxonomique d'intérêt 
-taxa_rank = "Genus"
-# Extraire vos échantillons 
-mes_échantillons = subset(tableau, Scientifique == ma_scientifique & Abundance > 0)
+# (5) Nous validons que la somme est bien de 1 pour chacune des régions (Source) 
 
-# Afin de visualiser uniquementles 10 taxons les plus abondants on utilise ce qu'on appelle une *for loop* ou boucle en français 
-empt_df = list() # On génère une liste vide que l'on viendra populer avec les résultats de la foor loop
-i = 0 # Ensuite on définit un premier itérateur (de type numérique) qui compte le nombre de loop effectué
-# Début de la for loop
-for (région_échantillonnée in unique(mes_échantillons$Region)){ # Cette séquence est le début de la loop où l'itérateur de gauche (région) 
-    i = i + 1                                           # représente chaque item de l'itérateur de droite (mes_échantillons$Région)
-    sample = subset(mes_échantillons, Region == région_échantillonnée) # Générer une nouvelle table de données basée sur la variable définit par l'itérateur 
-    total_abundance = aggregate(sample$Abundance, by = list(taxa_rank = sample[[taxa_rank]]), FUN = sum) # Additionner ensemble les ASVs du même genres
-    top = head(total_abundance[order(total_abundance$x, decreasing = T),], n = 5) # filtrer en order croissant pour identifer les 10 plus abondants
-    others_df = sample[!sample[[taxa_rank]] %in% top$taxa_rank,] # identifier les autres genres ne faisant pas partie des 10 plus abonants 
-    others_list = others_df[[taxa_rank]] # extraire leur nom du tableau de données dans une liste  
-    sample[sample[[taxa_rank]] %in% others_list,][[taxa_rank]] = "Autres" # Renommer leur genre pour Autres
-    empt_df[[i]] = sample # Enregistrer ce nouveau tableau 
-}
-df = do.call("rbind",empt_df) # Combiner les deux tables de données en une seule 
-
-
-# Maintenant que nous avons notre tableau de données avec seulement les 10 taxons les plus abondants sous la langue et la main
-# nous pouvons commencer à travailler sur le graphique. On commence par générer une liste de couleurs associées à chacun des taxons
-
-n = nrow(data.frame(unique(df$Genus))) # On calcule le nombre de genre unique que nous avons 
-palette = randomcoloR::distinctColorPalette(n) # On génère une nouvelle palette 
-my_scale = ggplot2::scale_fill_manual(name = as.character(taxa_rank), values = palette, na.translate = FALSE, drop = TRUE, limits = force) # On assigne une couleur à chacun de nos genres uniques 
-
-# Nous pouvons finalement générer le graphique 
-graphique = ggplot2::ggplot(df, aes(x = Region, weight = Abundance, fill = .data[[taxa_rank]])) +
-  facet_grid(~ Region, scales = "free") +
-  geom_bar() +
-  labs(y = "Abondance relative (%)") +
-  scale_y_continuous(expand = c(0,0)) +
-  theme_classic() +
-  theme(text = element_text(size = 12), strip.text.x = element_blank(), 
-        plot.title = element_text(hjust = 0.5, margin = margin(0, 0, 50, 0))) + 
-  guides(fill = guide_legend(title = "Genre", title.position = "top")) + 
-  my_scale
-
-graphique # visualiser le graphique produit 
-
-# Enregistrer en format coma separeted value (csv) votre tableau d'abondance 
-write.csv(df, "df.csv", quote=FALSE)
 ```
 
-## Obtenir le tableau d'abondance de mes ASVs dans Excel
+**Étape 3.Générer la figure**
 
-Le fichier df.csv aura été enregistré dans votre working directory, soit le dossier Documents.
+```{r, eval = FALSE, class.source="fold-hide"}
+#### ---- Code  ---- ####
 
-1.	Ouvrir le fichier df.csv dans Excel
-2.	Dans Excel, sélectionner l’ensemble d’une colonne (par ex. en cliquant sur l’en-tête ‘A’).
-3.	Aller dans l’onglet `Données`, cliquer sur `Convertir.`
-4.	À « Choisisser le type de fichier qui décrit le mieux vos données », sélectionner `Délimité.` Cliquer sur `Suivant.`
-5.	Sélectionner le séparateur `Virgule.` Cliquer sur `Terminer.`
-6.	Dans l'onglet `Données`, cliquer sur `Trier`. Sélection Trier par Région, ordre de A à Z. Cliquer sur `Ajouter un niveau`, sélectionner Puis par abundance, ordre de Z à A.
-7.	Copier la séquence de nucléotides de l’ASV le plus abondant de la paume (colonne M; Séquence). 
-8.	Faire l’exercice BLAST ci-bas avec l’ASV le plus abondant de la paume, puis après, avec l’ASV le plus abondant sous la langue.
+df_top = df_abond_rel %>% 
+  arrange(Source, desc(Abondance_relat)) %>% # (1)
+  mutate(Order = row_number()) %>% # (2)
+  mutate(Taxonomie = ifelse(Order < 11, paste(Phylum, Genus, OTU, sep = "; "), "Autres")) %>% # (3)
+  group_by(Source, Taxonomie) %>% # (4) 
+  summarise(Abondance_relative = sum(Abondance_relat)) # (4) 
+
+#### ---- explication  ---- ####
+
+# (1) Trier nos données par Source puis en fonction de l'abondance relative 
+# (2) Pour chaque source, associer un numéro de 1 à x dans la nouvelle colonne "Order" (1 étant le plus abondant)
+# (3) Générer une nouvelle colonne "Taxonomie" et pour remplir cette colonne, si la valeur de Order est inférieur 
+#     à 10, on copie colle la valeur de la colonne Phylum et colonne Genus, si la valeurs est supérieur, on assigne 
+#     la valeur "Autres" 
+# (4) Finalement, nous voulons regrouper les taxons "Autres" ensemble 
+#     alors nous reproduisons les étapes de groupement et addition réalisées précéement (2.4)
+
+# Créer une palette de couleur unique 
+nbr_unique_tax = length(unique(df_top$Taxonomie)) # Compter le nombre de taxon unique (devrait être ~ 20)
+custom_colors = distinctColorPalette(k = nbr_unique_tax) # Générer une palette de 20 couleur différentes 
+color_names = unique(df_top$Taxonomie) # Associer le nom de nos bactéries à chacune des couleur 
+my_palette = setNames(custom_colors, color_names) # Combiner les couleurs et leur nom
+my_palette[["Autres"]] = "lightgrey" # Associer une valeur gris pâle au groupe "Autre" 
+
+# Utiliser la fonction fct_relevel pour que le groupe "Autres" figure en premier dans la légende 
+df_top$Taxonomie = fct_relevel(df_top$Taxonomie, "Autres")
+
+graph = ggplot(df_top, aes(x = Source, y = Abondance_relative, fill = Taxonomie)) + 
+  geom_bar(position="stack", stat="identity") +
+  xlab("Région") + 
+  ylab("Abondance relative") + 
+  theme_minimal() +
+  scale_fill_manual(values = my_palette) + 
+  scale_y_continuous(expand = c(0,0), limits = c(0,1)) + 
+  scale_x_discrete(expand = c(0,0)) + 
+  guides(fill = guide_legend(nrow = 10)) # Spécifier que nous voulons 10 lignes max pour la légendre 
+
+# Enregistrer la figure 
+ggsave(graph, filename = "abondance_relative.pdf", width = 8.5, height = 4, units = "in")
+```
 
 ## BLAST
 
-Analyse de l'identité taxonomique de séquences microbiennes du gène d'ARNr 16S 
+Maintenant que vous pouvez visuellement constater quel ASVs sont les plus présents, nous voulons obtenir une classification plus précise que le Genre pour l'ASV de votre choix. Pour une classification jusqu'à l'espèce et peut-être même à la souche, nous utilisons le logiciel en ligne [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) du National Institute of Health (NIH) qui prend comme input une séquence d'ADN. 
 
-**Méthod**
+Une fois de plus, vous devez utiliser vos nouvelles connaissances en R pour produire un fichier de type fasta contenant la séquence d'ADN de l'ASV que vous voulez classifier avec BLAST. Comme précédéement la solution se trouve ci-dessous. 
+
+**Solution** 
+
+```{r, eval = FALSE, class.source="fold-hide"}
+#### ---- Code  ---- ####
+DNA = df_abond_rel %>% 
+  filter(OTU == "") %>% # (1)
+  select(OTU, DNA_string) %>% # (2) 
+  unique() # (3)
+
+dataframe2fas(DNA, file = "output_sequences.fasta") # (4)
+
+#### ---- explication  ---- ####
+
+# (1) Inscrire entre les guillemets l'ID de l'ASV d'intérêt puis comme précédemment, 
+#     nous utilison filter() pour filtrer le tableau de données 
+# (2) Nous sélectionnons uniquement les colonnes d'intérêt (OTU et DNA_string)
+# (3) Nous spécifions unique() au cas ou l'ASV serait présent dans les deux régions 
+#     (inutile d'avoir deux fois la même séquence)
+# (4) Générer le fichier fasta
+```
+
+**Fournir à BLAST le fichier fasta produit** 
 
 1. Se rendre sur le logiciel en ligne [BLAST du NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
 2. Choisir l'analyse `Nucleotide BLAST` (`BLASTn`) 
-3. Copier votre séquence dans la boîte de dialogue 
+3. Sélectionner `Choose file` et sélectionner le fihcier produits  
 4. Choisir la banque de données appropriée à laquelle comparer votre séquence 
   - Utiliser la collection de nucléotides 
   - Exclure les organismes environnementaux et non cultivés
@@ -131,6 +172,10 @@ Analyse de l'identité taxonomique de séquences microbiennes du gène d'ARNr 1
   
 Vous pouvez aussi consulter pour votre plaisir personnel : 
 
-- Le rapport de taxonomie (taxonomy report)
-- L’arbre des distances entre les meilleurs résultats (distance tree of results) 
+- L’arbre phylogénétique (Distance tree of results) 
+- Les résultats de l'alignement (MSA viewer)
+
+```{r echo=FALSE, out.width = "100%", fig.align = "center", out.lenght = "100%"}
+knitr::include_graphics("data/BLAST.png")
+```
 

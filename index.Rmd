@@ -19,7 +19,7 @@ Ce petit guide à été rédigé à l'intention des élèves du cours BIO1410 af
 
 2. La seconde section [Utiliser RStudio et R Mardown] introduit quelques notions de bases en R et explique comment élaborer des scripts avec RStudio en format R ou R Markdown. 
 
-3. La troisième section [Tableau de mes ASVs et BLAST] est un petit exercice de programmation R. 
+3. La troisième section [Vos ASVs et BLAST] est un petit exercice de programmation R. 
 
 4. La quatrième section [Traitement des fastqs] présente ensuite comment les données brutes du séquençage d'amplicon du gène ARNs 16S ont été traitées dans R afin d'obtenir une matrice d'abondance relative des variants de séquence d'amplicon (ASVs) par échantillon. 
 
