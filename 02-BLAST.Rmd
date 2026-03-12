@@ -1,0 +1,138 @@
+# Tableau de mes ASVs et BLAST
+
+Vous avez vue en classe une figure représentant l'abondance relative des principaux genres bactériens présents sous la langue ainsi que sur la paume de la main dominante de chacun des scientifiques de votre classe. Vous aimeriez maintenant générer une figure similaire à celle présentée en classe mais comprenant uniquement vos échantillons. Pour ce faire, vos démonstrateurs ont rédigé ce petit script R. Il vous suffit de suivre les étapes suivantes : 
+
+1. Télécharger le tableau de données [bio1410_2024.csv](https://ena01.uqam.ca/pluginfile.php/6291130/mod_folder/content/0/bio1410_2024.csv?forcedownload=1) et **l'enregistrer dans le dossier Documents** de l'ordinateur que vous utilisez. Si vous utilisez votre ordinateur personnel plutôt que celui de l'école vos démonstrateurs pourrons vous aider à spécifier le dossier le travail. 
+
+2. Créer un nouveau document de type R markdown. 
+
+4. Insérer deux blocs de code R et y copier/coller les blocs de code ci-dessous. 
+
+5. À la première ligne du code, copier/coller le nom de votre scientifique à partir de la liste des scienfitiques disponible après les blocs des code. Attention, assurez-vous **de ne pas** avoir d'espace entre les guillemets et le nom. 
+
+6. Exécuter les commandes en appuyant sur le bouton vert en haut à droite du bloc de code (<font color='green'> ▶ </font>). 
+
+Bloc de code 1 : Installation des packages/libraires 
+```{r, eval=FALSE}
+install.packages("randomcoloR")
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+Bloc de code 2 : Script pour obtenir vos données
+```{r, eval=FALSE}
+# Définir le nom de votre scientifique 
+ma_scientifique = "Abigail A. Salyers"
+
+# Importer le tableau de données
+tableau = read.table(file = "bio1410_2024.csv", sep=",", header=TRUE, check.names=FALSE) 
+# Définir le rang taxonomique d'intérêt 
+taxa_rank = "Genus"
+# Extraire vos échantillons 
+mes_échantillons = subset(tableau, Scientifique == ma_scientifique & Abundance > 0)
+
+# Afin de visualiser uniquementles 10 taxons les plus abondants on utilise ce qu'on appelle une *for loop* ou boucle en français 
+empt_df = list() # On génère une liste vide que l'on viendra populer avec les résultats de la foor loop
+i = 0 # Ensuite on définit un premier itérateur (de type numérique) qui compte le nombre de loop effectué
+# Début de la for loop
+for (région_échantillonnée in unique(mes_échantillons$Region)){ # Cette séquence est le début de la loop où l'itérateur de gauche (région) 
+    i = i + 1                                           # représente chaque item de l'itérateur de droite (mes_échantillons$Région)
+    sample = subset(mes_échantillons, Region == région_échantillonnée) # Générer une nouvelle table de données basée sur la variable définit par l'itérateur 
+    total_abundance = aggregate(sample$Abundance, by = list(taxa_rank = sample[[taxa_rank]]), FUN = sum) # Additionner ensemble les ASVs du même genres
+    top = head(total_abundance[order(total_abundance$x, decreasing = T),], n = 5) # filtrer en order croissant pour identifer les 10 plus abondants
+    others_df = sample[!sample[[taxa_rank]] %in% top$taxa_rank,] # identifier les autres genres ne faisant pas partie des 10 plus abonants 
+    others_list = others_df[[taxa_rank]] # extraire leur nom du tableau de données dans une liste  
+    sample[sample[[taxa_rank]] %in% others_list,][[taxa_rank]] = "Autres" # Renommer leur genre pour Autres
+    empt_df[[i]] = sample # Enregistrer ce nouveau tableau 
+}
+df = do.call("rbind",empt_df) # Combiner les deux tables de données en une seule 
+
+
+# Maintenant que nous avons notre tableau de données avec seulement les 10 taxons les plus abondants sous la langue et la main
+# nous pouvons commencer à travailler sur le graphique. On commence par générer une liste de couleurs associées à chacun des taxons
+
+n = nrow(data.frame(unique(df$Genus))) # On calcule le nobre de genre unique que nous avons 
+palette = randomcoloR::distinctColorPalette(n) # On génère une nouvelle palette 
+my_scale = ggplot2::scale_fill_manual(name = as.character(taxa_rank), values = palette, na.translate = FALSE, drop = TRUE, limits = force) # On assigne une couleur à chacun de nos genres uniques 
+
+# Nous pouvons finalement générer le graphique 
+graphique = ggplot2::ggplot(df, aes(x = Region, weight = Abundance, fill = .data[[taxa_rank]])) +
+  facet_grid(~ Region, scales = "free") +
+  geom_bar() +
+  labs(y = "Abondance relative (%)") +
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic() +
+  theme(text = element_text(size = 12), strip.text.x = element_blank(), 
+        plot.title = element_text(hjust = 0.5, margin = margin(0, 0, 50, 0))) + 
+  guides(fill = guide_legend(title = "Genre", title.position = "top")) + 
+  my_scale
+
+graphique # visualiser le graphique produit 
+
+# Enregistrer en format coma separeted value (csv) votre tableau d'abondance 
+write.csv(df, "df.csv", quote=FALSE)
+```
+
+## Scientifiques
+
+    A - J                                                         K - V
+------------------                                      -----------------------------
+Abigail A. Salyers                                        Kalpana Chawla  
+Alice Augusta Ball                                        Khatijah Mohammad Yousoff 
+Ana Roque de Duprey                                       Leone Norwood Farrell   
+Angelina Fanny Hesse                                      Lise Meitner   
+Augusta Ada Byron Lovelace                                Margaret Elaine Heafield  Hamilton  
+Chien-Shiung Wu                                           Marie Maynard Daly Clark   
+Creola Katherine Coleman Johnson                          Marjory Stephenson    
+Dorothy Hodgkin                                           Mary Golda Ross      
+Dorothy Jean Johnson Vaughan                              Mary Jackson
+Elizabeth Bugie Gregory                                   Nettie Stevens    
+Elizabeth Garrett Anderson                                Rachel Carson  
+Emmanuelle Marie Charpentier                              Rosalind Elsie Franklin 
+Emmy Klieneberger-Nobel                                   Roseli Ocampo-Friedmann 
+Farah Alibay                                              Ruth Ella Moore
+Floy Agnes Naranjo Stroud Lee                             Sally Kristen Ride                           
+Frances Joan Estelle Wagner                               Vera Florence Cooper Rubin
+Gladys Mae Brown West              
+Jane Goodale                      
+Jessie Isabelle Price              
+Johanna Westerdijk                 
+June Dalziel Hart Almeida     
+
+## Obtenir le tableau d'abondance de mes ASVs dans Excel
+
+Le fichier df.csv aura été enregistré dans votre working directory, soit le dossier Documents.
+
+1.	Ouvrir le fichier df.csv dans Excel
+2.	Dans Excel, sélectionner l’ensemble d’une colonne (par ex. en cliquant sur l’en-tête ‘A’).
+3.	Aller dans l’onglet `Données`, cliquer sur `Convertir.`
+4.	À « Choisisser le type de fichier qui décrit le mieux vos données », sélectionner `Délimité.` Cliquer sur `Suivant.`
+5.	Sélectionner le séparateur `Virgule.` Cliquer sur `Terminer.`
+6.	Dans l'onglet `Données`, cliquer sur `Trier`. Sélection Trier par Région, ordre de A à Z. Cliquer sur `Ajouter un niveau`, sélectionner Puis par abundance, ordre de Z à A.
+7.	Copier la séquence de nucléotides de l’ASV le plus abondant de la paume (colonne M; Séquence). 
+8.	Faire l’exercice BLAST ci-bas avec l’ASV le plus abondant de la paume, puis après, avec l’ASV le plus abondant sous la langue.
+
+## BLAST
+
+Analyse de l'identité taxonomique de séquences microbiennes du gène d'ARNr 16S 
+
+**Méthod**
+
+1. Se rendre sur le logiciel en ligne [BLAST du NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
+2. Choisir l'analyse `Nucleotide BLAST` (`BLASTn`) 
+3. Copier votre séquence dans la boîte de dialogue 
+4. Choisir la banque de données appropriée à laquelle comparer votre séquence 
+  - Utiliser la collection de nucléotides 
+  - Exclure les organismes environnementaux et non cultivés
+  - Choisir l'algorithme de BLAST désiré (essayer à la fois les algorithmes` BLASTn` et` MegaBLAST`
+5. Lancer l'analyse (bouton `BLAST`). 
+6. Après lecture et analyse du fichier sortant effectuer un imprime-écran incluant les trois premiers résultats de l’analyse (trois premiers taxons identifiés). Vous devrez inclure cette image dans l’annexe de votre travail. Réalisez un tableau à inclure dans le corps du texte comprenant les colonnes suivantes; 
+  - Per. Ident.
+  - Query cover
+  - E.value
+  
+Vous pouvez aussi consulter pour votre plaisir personnel : 
+
+- Le rapport de taxonomie (taxonomy report)
+- L’arbre des distances entre les meilleurs résultats (distance tree of results) 
+
