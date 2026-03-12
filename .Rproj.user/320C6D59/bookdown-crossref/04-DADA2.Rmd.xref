@@ -1,0 +1,11 @@
+h1:traitement-des-fastqs Traitement des fastqs
+h2:pré-analyse Pré-analyse
+h2:inspecter-la-qualité-filtrer-et-rogner Inspecter la qualité, filtrer et rogner
+h2:retirer-les-erreurs-de-nucléotides Retirer les erreurs de nucléotides
+h2:gnérer-la-matrice-dabondance-dasvs-par-échantillon Gnérer la matrice d’abondance d’ASVs par échantillon
+h2:classification-taxonomique Classification taxonomique
+h2:obtenir-les-séquences-dacides-nucléiques-adn Obtenir les séquences d’acides nucléiques (ADN)
+h2:sauvegarder-les-résultats-en-format-comma-seperated-value-csv Sauvegarder les résultats en format comma seperated value (csv)
+h2:raréfier Raréfier
+h2:sauvegarder-les-résultats-en-format-comma-seperated-value-csv-1 Sauvegarder les résultats en format comma seperated value (csv)
+

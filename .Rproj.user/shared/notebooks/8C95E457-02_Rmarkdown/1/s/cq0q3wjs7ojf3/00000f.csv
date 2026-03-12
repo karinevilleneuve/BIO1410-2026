@@ -1,0 +1,9 @@
+"0","graph_bmi_species = ggplot(data = df_manchot, aes(x = Species, y = `Body Mass (g)`)) + 
+  geom_boxplot(alpha = 0.3, outlier.shape = NA) +
+  geom_jitter(size = 3, ) +
+  labs(title = ""Relation entre MPG et HP"", x = ""Miles par gallon"", y = ""Chevaux-vapeur"") +  # Titres et légendes
+  theme_minimal()  # Application d'un thème minimaliste
+"
+"2","Error in ggplot(data = df_manchot, aes(x = Species, y = `Body Mass (g)`)) : 
+  could not find function ""ggplot""
+"
