@@ -59,12 +59,12 @@ df_sub = subset(df_raw, Scientifique == "") # (2)
 
 df_abond_rel = df_sub %>% 
   filter(Abundance > 0) %>% # (1)
-  group_by(Source) %>% # (2)
+  group_by(Region) %>% # (2)
   mutate(Abondance_relat = Abundance / sum(Abundance)) %>% # (3) 
   ungroup()
 
 valider = df_abond_rel %>% # (4) 
-  group_by(Source) %>%
+  group_by(Region) %>%
   summarise(Total = sum(Abondance_relat)) 
 
 #### ---- explication  ---- ####
@@ -72,13 +72,13 @@ valider = df_abond_rel %>% # (4)
 # (1) Puisqu'il est impossible de diviser 0, nous retirons les ASVs qui ont une abondance de 0 
 
 # (2) Pour réaliser les opérations mathématiquement séparémment pour chaque région nous devons 
-#     utilisons la fonction group_by() pour indiquer à R dans quel colonne se trouve nos catégories (Régions)
+#     utilisons la fonction group_by() pour indiquer à R dans quel colonne se trouve nos catégories (régions)
 #     qu'il doit traiter séparémment.
 
 # (3) Pour obtenir l'abondance relative nous créons une nouvelle colonne "Abondance_relat" qui est 
 #     le résultats de Abundance / sum(Abundance)
 
-# (5) Nous validons que la somme est bien de 1 pour chacune des régions (Source) 
+# (5) Nous validons que la somme est bien de 1 pour chacune des régions 
 
 ```
 
@@ -88,16 +88,16 @@ valider = df_abond_rel %>% # (4)
 #### ---- Code  ---- ####
 
 df_top = df_abond_rel %>% 
-  arrange(Source, desc(Abondance_relat)) %>% # (1)
+  arrange(Region, desc(Abondance_relat)) %>% # (1)
   mutate(Order = row_number()) %>% # (2)
   mutate(Taxonomie = ifelse(Order < 11, paste(Phylum, Genus, OTU, sep = "; "), "Autres")) %>% # (3)
-  group_by(Source, Taxonomie) %>% # (4) 
+  group_by(Region, Taxonomie) %>% # (4) 
   summarise(Abondance_relative = sum(Abondance_relat)) # (4) 
 
 #### ---- explication  ---- ####
 
-# (1) Trier nos données par Source puis en fonction de l'abondance relative 
-# (2) Pour chaque source, associer un numéro de 1 à x dans la nouvelle colonne "Order" (1 étant le plus abondant)
+# (1) Trier nos données par region puis en fonction de l'abondance relative 
+# (2) Pour chaque région, associer un numéro de 1 à x dans la nouvelle colonne "Order" (1 étant le plus abondant)
 # (3) Générer une nouvelle colonne "Taxonomie" et pour remplir cette colonne, si la valeur de Order est inférieur 
 #     à 10, on copie colle la valeur de la colonne Phylum et colonne Genus, si la valeurs est supérieur, on assigne 
 #     la valeur "Autres" 
@@ -114,7 +114,7 @@ my_palette[["Autres"]] = "lightgrey" # Associer une valeur gris pâle au groupe 
 # Utiliser la fonction fct_relevel pour que le groupe "Autres" figure en premier dans la légende 
 df_top$Taxonomie = fct_relevel(df_top$Taxonomie, "Autres")
 
-graph = ggplot(df_top, aes(x = Source, y = Abondance_relative, fill = Taxonomie)) + 
+graph = ggplot(df_top, aes(x = Region, y = Abondance_relative, fill = Taxonomie)) + 
   geom_bar(position="stack", stat="identity") +
   xlab("Région") + 
   ylab("Abondance relative") + 

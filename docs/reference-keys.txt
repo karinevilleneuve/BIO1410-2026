@@ -1,4 +1,6 @@
 introduction
+installer-r-et-rstudio
+références-et-liens-utiles
 introduction-à-r-et-rstudio
 quest-ce-que-r-et-rstudio
 composants-de-rstudio
@@ -20,13 +22,13 @@ inspecter-la-qualité-filtrer-et-rogner
 retirer-les-erreurs-de-nucléotides
 gnérer-la-matrice-dabondance-dasvs-par-échantillon
 classification-taxonomique
+retirer-les-asvs-potentiellement-issue-de-contamination
 obtenir-les-séquences-dacides-nucléiques-adn
-sauvegarder-les-résultats-en-format-comma-seperated-value-csv
+sauvegarder-les-résultats-en-format-rds-sépcifique-à-r
 raréfier
-sauvegarder-les-résultats-en-format-comma-seperated-value-csv-1
+format-table-de-données
 statistiques
 thème-pour-les-graphiques
+abondances-relatives-des-principaux-genres
 indice-de-shannon
 ordination-pcoa
-lefse
-abondances-relatives

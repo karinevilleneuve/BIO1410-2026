@@ -25,11 +25,20 @@ Ce petit guide à été rédigé à l'intention des élèves du cours BIO1410 af
 
 5. La section [Statistiques] présente l'ensemble des analyses statistiques réalisées avec R afin de comparer le microbiote des deux régions échantillonnées. 
 
-6. Finalement, la section [Installer R et RStudio ] indique les liens pour télécharger chacun des programmes. 
+## Installer R et RStudio 
 
+R est disponible gratuitement pour les systèmes d'opération Windows, Mac et Linux sur le [site officiel des archives de R](https://cloud.r-project.org/). 
 
+Une fois R installé, vous pouvez procéder à l'installation de [RStudio](https://posit.co/download/rstudio-desktop/)
 
-comprend un petit script R permettant à l'élève d'identifier les 10 genres bactériens les plus abondants dans ses échantillons récoltés sous sa langue ainsi que sur la paume de sa mains. Ce script permet aussi de générer un tableau de données en format *comma seperated value* (csv) que l'étudiant devra utiliser pour obtenir la séquence d'acides nucléiques du taxon choisi. La séquence pourra ensuite être rechercher dans la base de données du National Center for Biotechnology Information (NCBI) avec leur outil *Basic Local Alignment Search Tool* ([BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)) afin d'obtenir une classification plus précise que le genre. 
+## Références et liens utiles 
 
-La quatrième section [R Markdown] aborde une différentes manière de rédiger ses scripts favorisant l'annotation et l'organisation du code en plus de l'exportation des scripts sous différents formats (PDF, HTML, etc.) pour le partage des scripts.
+[An Introduction to R](https://intro2r.com/)
 
+[Introduction à R par GRICAD Grenoble Alpes Recherche - Infrastructure de Calcul Intensif et de Données](https://formations_r.gricad-pages.univ-grenoble-alpes.fr/ced_intror/)
+
+[Série d’ateliers R du CSBQ](https://r.qcbs.ca/fr/workshops/)
+
+[Data Science avec R](https://bookdown.org/fousseynoubah/dswr_book/objets-dans-r.html) 
+
+- Je recommande spécialement le **Chapitre 3 Objets dans R** et le **Chapitre 4 S’exprimer dans R**

@@ -17,7 +17,7 @@ library(phyloseq)
 Identifier les échantillons présents dans le dossier de travail et extraire le nom de ces deniers sans les artefacts ajoutés lors du séquençage. 
 ```{r, eval = FALSE}
 # Créer une variable qui définit le lien vers le dossier contenant tous les fichiers en format fastq
-path = "~/BIO1410/2023/raw_fastqs"  
+path = "~/BIO1410/2026/raw_fastqs"  
 # Identifier tous les fichiers fastq du brin Forward
 fnFs = sort(list.files(path, pattern="_R1_001.fastq", full.names = TRUE)) 
 # Identifier tous les fichiers fastq du brin Reverse
@@ -50,11 +50,11 @@ plotQualityProfile(fnFs, aggregate = TRUE)
 plotQualityProfile(fnRs, aggregate = TRUE)
 ```
 
-```{r echo=FALSE, out.width = "70%", fig.align = "center", out.lenght = "100%"}
-#knitr::include_graphics("data/plotqualityprofile.png")
+```{r echo=FALSE, out.width = "100%", fig.align = "center", out.lenght = "100%"}
+knitr::include_graphics("data/plotqualityprofile.png")
 ```
 
-L’analyse de ces graphiques nous permet donc de choisir les paramètres de filtrage et de rognage de la prochaine étape. La qualité des séquences du brin Forward est généralement de meilleur qualité que celle des séquences du brin Reverse. L'intégralité du brin Forward (250 nucléotides) est d'assez bonnes qualité pour le conserver entier alors que pour le brin Reverse nous supprimerons les nucléotides après la position 240. En observant les graphiques générés, vous pouvesz constater que le début des séquences est aussi de moins bonne qualité et comprend les amorces que nous devons retirer. 
+L’analyse de ces graphiques nous permet donc de choisir les paramètres de filtrage et de rognage de la prochaine étape. La qualité des séquences du brin Forward est généralement de meilleur qualité que celle des séquences du brin Reverse. L'intégralité du brin Forward (300 nucléotides) est d'assez bonnes qualité pour le conserver entier alors que pour le brin Reverse nous supprimerons les nucléotides après la position 240. En observant les graphiques générés, vous pouvesz constater que le début des séquences est aussi de moins bonne qualité et comprend les amorces que nous devons retirer. 
 
 **Filtrer et rogner les séquences** 
 
@@ -72,13 +72,13 @@ Nous utilisons la fonction `filterAndTrim` afin de filtrer et rogner les séquen
 - truncQ : définit un l’indice Q score minimale. A la première instance d’un score de qualité inférieur ou égal à truncQ, la séquence est tronquée.
 - truncLen : définit à quelle longueur les séquences vont être tronquées. Les séquences plus courtes que la longueur sont éliminées.
 - trimLeft : définit la longueur que l’on coupe du côté 5’ des séquences. Cela permet d’enlever les amorces si elles n'ont pas été préalablement retiré.
-  - 799F: AACMGGATTAGATACCCKG = 19 nucléotides / 
+  - 799F: AACMGGATTAGATACCCKG = 16 nucléotides / 
   - 1115R: AGGGTTGCGCTCGTTG = 19 nucléotides
 - maxEE : définit le nombre maximum d’*erreurs attendues* autorisées dans une lecture. Ce filtre se base sur l’indice Q score. Plus on augmente le chiffre, moins on est strict.
 
 ```{r, eval = FALSE}
 # Filtrer les séquences 
-out = filterAndTrim(fnFs, filtFs, fnRs, filtRs, trimLeft = c(19,16), truncLen=c(250,240), 
+out = filterAndTrim(fnFs, filtFs, fnRs, filtRs, trimLeft = c(16,19), truncLen=c(300,280), 
                      maxN=0, maxEE=2, truncQ=2,rm.phix=TRUE, 
                      compress=TRUE, multithread=TRUE) 
 ```
@@ -126,7 +126,6 @@ Grâce à l’implémentation de la méthode de classification naïve bayésienn
 
 ```{r, eval= FALSE}
 taxa = assignTaxonomy(seqtab.nochim, "~/16S_Project/silva_nr99_v138.1_train_set.fa.gz", multithread=TRUE, tryRC=TRUE)
-
 ```
 
 Comme nous avons plusieurs ASVs non classifié à différents rangs taxonomique, nous allons venir copier le rang taxonomique supérieur suivant du mot "Unclassified" aux ASVs non-classifiés. 
@@ -144,66 +143,63 @@ taxid = subset(as.data.frame(taxid), Kingdom =="Bacteria")
 seqtab.nochim = seqtab.nochim[,colnames(seqtab.nochim) %in% rownames(taxid)]
 ``` 
 
+## Retirer les ASVs potentiellement issue de contamination 
+
+```{r, eval= FALSE}
+#Importer le tableau de données des métadonnées 
+meta = read.table("data/metadata.csv", sep = ",", row.names = 1, header = TRUE)
+# Combiner la matrice d'aboncance, le tableau de métadonnées et la table de taxonomique dans un object de type phyloseq
+ps = phyloseq(otu_table(t(seqtab.nochim), taxa_are_rows=TRUE), tax_table(as.matrix(taxid)), sample_data(meta))
+# On identifie la prévalence des ASVs présent dans les échantillons contrôles et dans les échantillons réel
+contamdf.prev = isContaminant(ps, method="prevalence", neg="CTRL", threshold=0.5)
+# On dénombre les ASVs contaminant VS réel 
+table(contamdf.prev$contaminant) 
+# Retirer les ASV de contamination 
+ps.noncontam = prune_taxa(!contamdf.prev$contaminant, ps) 
+# Retirer les échantillons contrôles
+ps_decontam=subset_samples(ps.noncontam, !CTRL=="TRUE")
+``` 
+
 ## Obtenir les séquences d'acides nucléiques (ADN)
 Nous voulons conserver la séquences d'ADN correspondant à chacun des ASVs afin de pouvoir ultimement utiliser cette séquences avec la base de données BLAST de NCBI. 
 
 ```{r, eval= FALSE}
-# Importer le tableau de données des métadonnées 
-meta = read.table("/home/kvilleneuve/16S_Project/BIO1410/metadata.csv",sep=",", row.names=1, header=TRUE)
-# Combiner la matrice d'aboncance, le tableau de métadonnées et la table de taxonomique dans un object de type phyloseq
-ps = phyloseq(otu_table(t(seqtab.nochim), taxa_are_rows=TRUE), tax_table(as.matrix(taxid)), sample_data(meta))
-# On 
-dna = Biostrings::DNAStringSet(taxa_names(ps))
-names(dna) = taxa_names(ps)
-ps1 = merge_phyloseq(ps, dna)
-
+# On extrait les séquences d'ADN 
+dna = Biostrings::DNAStringSet(taxa_names(ps_decontam))
+names(dna) = taxa_names(ps_decontam)
+ps1 = merge_phyloseq(ps_decontam, dna)
+# On modifie le nom de chaque ASV ; plutôt que la séquence complète d'ADN on utilise ASV1, ASV2, etc. 
 taxa_names(ps1) = paste0("ASV", seq(ntaxa(ps1)))
 ``` 
 
-## Sauvegarder les résultats en format comma seperated value  (csv)
+## Sauvegarder les résultats en format Rds sépcifique à R 
 ```{r, eval= FALSE}
-# La matrice d'anbondance d'ASV par échantillon
-write.csv(seqtab.nochim, file = "~/BIO1410/raw_asv.csv")
-# Le tableau de classification taxonomique des ASVs
-write.csv(taxid, file = "~/BIO1410/raw_sequences.csv")
-# Les séquences d'ADN associées à chacun des ASVs
-ps1 %>%
-      refseq() %>%
-      Biostrings::writeXStringSet("~/BIO1410/raw_refseq.fna", append=FALSE,
-                                  compress=FALSE, compression_level=NA, format="fasta")
+saveRDS(ps1, "data/ps_raw.Rds")
 ```
 
 ## Raréfier 
-**Retirer les taxons peu abondant**
-Une des raisons pour retirer les taxons peu abondant est de limiter les temps passé à analyser des taxons rarement vus. Cela s'avère généralement une bonne pratique afin de filtrer le "bruit de fond" inutile (taxons qui ne sont en fait que des artefacts du processus de collecte de données). 
-Nous élminons ici les taxons dont l'abondance relative est inférieur à 0.005 % tel que recommandé par *Bokulich et al., 2013* 
-```{r, eval=FALSE}
-# Define threshold for low abundant taxa
-minTotRelAbun = 5e-5
-# Get total sum for each taxa
-x = taxa_sums(ps)
-# Identify taxa with a total sum greater than the defined threshold
-keepTaxa = (x / sum(x)) > minTotRelAbun
-# Filter out from the phyloseq object any taxa not identified in the keepTaxa object
-prunedSet = prune_taxa(keepTaxa, ps)
-# View how many taxa were removed by sample 
-loss_taxa=data.frame(sample_sums(prunedSet), sample_sums(ps), (sample_sums(prunedSet)-sample_sums(ps)))
-```
 
-Nous raréfions ensuite au premier nombre de séquence au-dessus de 1000. Dans note cas cela correspond à 1118. 
+Nous raréfions ensuite au premier nombre de séquence au-dessus de 1000. Dans note cas cela correspond à 1159.  
 ```{r, eval=FALSE}
-# Get dataframe of sequences per sample
-sample_size = as.data.frame(sample_sums(prunedSet))
-# Filter for the lowest number above 1000 
+# Générer une matrix du nombre de séquences par échantillons
+sample_size = as.data.frame(sample_sums(ps1))
+# Filtrer pour trouver la plus petit valeur au-dessus de 1000 
 rare_value = sample_size[which.max((sample_size[,1] >= 1000)/sample_size[,1]),]
-# Rarefy to value identified as rare_value
-ps_rare = rarefy_even_depth(prunedSet, rare_value, rngseed = 112, replace = FALSE, trimOTUs = TRUE, verbose = TRUE) 
-# Confirm rarefaction as a sanity check 
+# Raréfier à cette valeur 
+ps_rare = rarefy_even_depth(ps1, rare_value, rngseed = 112, replace = FALSE, trimOTUs = TRUE, verbose = TRUE) 
+# Confirmer la raréfaction à la bonne valeur
 sample_sums(ps_rare)
+# Enregistrer l'objet  
+saveRDS(ps_rare, "data/ps_rare.Rds")
 ```
 
-## Sauvegarder les résultats en format comma seperated value  (csv)
-```{r, eval = FALSE}
-write.csv(as.data.frame(as(tax_table(ps_rare), "matrix")), file = "~/rarefied_taxa.csv")
-write.csv(as.data.frame(as(otu_table(ps_rare), "matrix")),file = "~/rarefied_asv.csv")
-``` 
+## Format table de données 
+
+Transformer l'object phyloseq en une table de données contenant toutes les informations 
+```{r, eval=FALSE}
+df = psmelt(ps_rare)
+# Enregistrer l'objet
+saveRDS(df, "data/df.Rds")
+```
+
+
