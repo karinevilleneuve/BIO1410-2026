@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>BIO1410 - 2024 - Analyses R</title>
-  <meta name="description" content="BIO1410 - 2024 - Analyses R" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <title>BIO1410 - 2026 - Analyses R</title>
+  <meta name="description" content="BIO1410 - 2026 - Analyses R" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="BIO1410 - 2024 - Analyses R" />
+  <meta property="og:title" content="BIO1410 - 2026 - Analyses R" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="BIO1410 - 2024 - Analyses R" />
+  <meta name="twitter:title" content="BIO1410 - 2026 - Analyses R" />
   
   
   
@@ -30,7 +30,7 @@
   
   
 
-<link rel="next" href="introduction-à-r-studio-et-r-markdown.html"/>
+<link rel="next" href="introduction-à-r-et-rstudio.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -48,12 +48,14 @@
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -136,45 +138,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">BIO1410-2024</a></li>
+<li><a href="./">BIO1410-2026</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="introduction-à-r-studio-et-r-markdown.html"><a href="introduction-à-r-studio-et-r-markdown.html"><i class="fa fa-check"></i><b>2</b> Introduction à R Studio et R Markdown</a>
+<li class="chapter" data-level="2" data-path="introduction-à-r-et-rstudio.html"><a href="introduction-à-r-et-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction à R et RStudio</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="introduction-à-r-studio-et-r-markdown.html"><a href="introduction-à-r-studio-et-r-markdown.html#pourquoi-utiliser-r-markdown"><i class="fa fa-check"></i><b>2.1</b> Pourquoi utiliser R Markdown</a></li>
-<li class="chapter" data-level="2.2" data-path="introduction-à-r-studio-et-r-markdown.html"><a href="introduction-à-r-studio-et-r-markdown.html#utliser-r-markdowm"><i class="fa fa-check"></i><b>2.2</b> Utliser R Markdowm</a>
+<li class="chapter" data-level="2.1" data-path="introduction-à-r-et-rstudio.html"><a href="introduction-à-r-et-rstudio.html#quest-ce-que-r-et-rstudio"><i class="fa fa-check"></i><b>2.1</b> Qu’est-ce que R et Rstudio</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-à-r-et-rstudio.html"><a href="introduction-à-r-et-rstudio.html#composants-de-rstudio"><i class="fa fa-check"></i><b>2.2</b> Composants de RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html"><i class="fa fa-check"></i><b>3</b> Utiliser RStudio et R Mardown</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="introduction-à-r-studio-et-r-markdown.html"><a href="introduction-à-r-studio-et-r-markdown.html#bloc-de-codes"><i class="fa fa-check"></i><b>2.2.1</b> Bloc de codes</a></li>
-<li class="chapter" data-level="2.2.2" data-path="introduction-à-r-studio-et-r-markdown.html"><a href="introduction-à-r-studio-et-r-markdown.html#définir-le-répertoire-de-travail-par-défault"><i class="fa fa-check"></i><b>2.2.2</b> Définir le répertoire de travail par défault</a></li>
-<li class="chapter" data-level="2.2.3" data-path="introduction-à-r-studio-et-r-markdown.html"><a href="introduction-à-r-studio-et-r-markdown.html#importer-des-données"><i class="fa fa-check"></i><b>2.2.3</b> Importer des données</a></li>
+<li class="chapter" data-level="3.1" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#pourquoi-utiliser-r-markdown"><i class="fa fa-check"></i><b>3.1</b> Pourquoi utiliser R Markdown</a></li>
+<li class="chapter" data-level="3.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#utliser-r-markdowm"><i class="fa fa-check"></i><b>3.2</b> Utliser R Markdowm</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#bloc-de-codes"><i class="fa fa-check"></i><b>3.2.1</b> Bloc de codes</a></li>
+<li class="chapter" data-level="3.2.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#d%C3%A9finir-le-r%C3%A9pertoire-de-travail-par-d%C3%A9fault"><i class="fa fa-check"></i><b>3.2.2</b> Définir le répertoire de travail par défault</a></li>
+<li class="chapter" data-level="3.2.3" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#importer-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.3</b> Importer des données</a></li>
+<li class="chapter" data-level="3.2.4" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#manipulation-de-variables-et-types-de-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.4</b> Manipulation de variables et types de données</a></li>
+<li class="chapter" data-level="3.2.5" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#structures-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.5</b> Structures des données</a></li>
+<li class="chapter" data-level="3.2.6" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#exploration-de-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.6</b> Exploration de données</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="tableau-de-mes-asvs-et-blast.html"><a href="tableau-de-mes-asvs-et-blast.html"><i class="fa fa-check"></i><b>3</b> Tableau de mes ASVs et BLAST</a>
+<li class="chapter" data-level="4" data-path="tableau-de-mes-asvs-et-blast.html"><a href="tableau-de-mes-asvs-et-blast.html"><i class="fa fa-check"></i><b>4</b> Tableau de mes ASVs et BLAST</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="tableau-de-mes-asvs-et-blast.html"><a href="tableau-de-mes-asvs-et-blast.html#scientifiques"><i class="fa fa-check"></i><b>3.1</b> Scientifiques</a></li>
-<li class="chapter" data-level="3.2" data-path="tableau-de-mes-asvs-et-blast.html"><a href="tableau-de-mes-asvs-et-blast.html#obtenir-le-tableau-dabondance-de-mes-asvs-dans-excel"><i class="fa fa-check"></i><b>3.2</b> Obtenir le tableau d’abondance de mes ASVs dans Excel</a></li>
-<li class="chapter" data-level="3.3" data-path="tableau-de-mes-asvs-et-blast.html"><a href="tableau-de-mes-asvs-et-blast.html#blast"><i class="fa fa-check"></i><b>3.3</b> BLAST</a></li>
+<li class="chapter" data-level="4.1" data-path="tableau-de-mes-asvs-et-blast.html"><a href="tableau-de-mes-asvs-et-blast.html#obtenir-le-tableau-dabondance-de-mes-asvs-dans-excel"><i class="fa fa-check"></i><b>4.1</b> Obtenir le tableau d’abondance de mes ASVs dans Excel</a></li>
+<li class="chapter" data-level="4.2" data-path="tableau-de-mes-asvs-et-blast.html"><a href="tableau-de-mes-asvs-et-blast.html#blast"><i class="fa fa-check"></i><b>4.2</b> BLAST</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html"><i class="fa fa-check"></i><b>4</b> Traitement des fastqs</a>
+<li class="chapter" data-level="5" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html"><i class="fa fa-check"></i><b>5</b> Traitement des fastqs</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#pré-analyse"><i class="fa fa-check"></i><b>4.1</b> Pré-analyse</a></li>
-<li class="chapter" data-level="4.2" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#inspecter-la-qualité-filtrer-et-rogner"><i class="fa fa-check"></i><b>4.2</b> Inspecter la qualité, filtrer et rogner</a></li>
-<li class="chapter" data-level="4.3" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#retirer-les-erreurs-de-nucléotides"><i class="fa fa-check"></i><b>4.3</b> Retirer les erreurs de nucléotides</a></li>
-<li class="chapter" data-level="4.4" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#gnérer-la-matrice-dabondance-dasvs-par-échantillon"><i class="fa fa-check"></i><b>4.4</b> Gnérer la matrice d’abondance d’ASVs par échantillon</a></li>
-<li class="chapter" data-level="4.5" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#classification-taxonomique"><i class="fa fa-check"></i><b>4.5</b> Classification taxonomique</a></li>
-<li class="chapter" data-level="4.6" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#obtenir-les-séquences-dacides-nucléiques-adn"><i class="fa fa-check"></i><b>4.6</b> Obtenir les séquences d’acides nucléiques (ADN)</a></li>
-<li class="chapter" data-level="4.7" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#sauvegarder-les-résultats-en-format-comma-seperated-value-csv"><i class="fa fa-check"></i><b>4.7</b> Sauvegarder les résultats en format comma seperated value (csv)</a></li>
-<li class="chapter" data-level="4.8" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#raréfier"><i class="fa fa-check"></i><b>4.8</b> Raréfier</a></li>
-<li class="chapter" data-level="4.9" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#sauvegarder-les-résultats-en-format-comma-seperated-value-csv-1"><i class="fa fa-check"></i><b>4.9</b> Sauvegarder les résultats en format comma seperated value (csv)</a></li>
+<li class="chapter" data-level="5.1" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#pr%C3%A9-analyse"><i class="fa fa-check"></i><b>5.1</b> Pré-analyse</a></li>
+<li class="chapter" data-level="5.2" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#inspecter-la-qualit%C3%A9-filtrer-et-rogner"><i class="fa fa-check"></i><b>5.2</b> Inspecter la qualité, filtrer et rogner</a></li>
+<li class="chapter" data-level="5.3" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#retirer-les-erreurs-de-nucl%C3%A9otides"><i class="fa fa-check"></i><b>5.3</b> Retirer les erreurs de nucléotides</a></li>
+<li class="chapter" data-level="5.4" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#gn%C3%A9rer-la-matrice-dabondance-dasvs-par-%C3%A9chantillon"><i class="fa fa-check"></i><b>5.4</b> Gnérer la matrice d’abondance d’ASVs par échantillon</a></li>
+<li class="chapter" data-level="5.5" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#classification-taxonomique"><i class="fa fa-check"></i><b>5.5</b> Classification taxonomique</a></li>
+<li class="chapter" data-level="5.6" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#obtenir-les-s%C3%A9quences-dacides-nucl%C3%A9iques-adn"><i class="fa fa-check"></i><b>5.6</b> Obtenir les séquences d’acides nucléiques (ADN)</a></li>
+<li class="chapter" data-level="5.7" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#sauvegarder-les-r%C3%A9sultats-en-format-comma-seperated-value-csv"><i class="fa fa-check"></i><b>5.7</b> Sauvegarder les résultats en format comma seperated value (csv)</a></li>
+<li class="chapter" data-level="5.8" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#rar%C3%A9fier"><i class="fa fa-check"></i><b>5.8</b> Raréfier</a></li>
+<li class="chapter" data-level="5.9" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#sauvegarder-les-r%C3%A9sultats-en-format-comma-seperated-value-csv-1"><i class="fa fa-check"></i><b>5.9</b> Sauvegarder les résultats en format comma seperated value (csv)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="statistiques.html"><a href="statistiques.html"><i class="fa fa-check"></i><b>5</b> Statistiques</a>
+<li class="chapter" data-level="6" data-path="statistiques.html"><a href="statistiques.html"><i class="fa fa-check"></i><b>6</b> Statistiques</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="statistiques.html"><a href="statistiques.html#thème-pour-les-graphiques"><i class="fa fa-check"></i><b>5.1</b> Thème pour les graphiques</a></li>
-<li class="chapter" data-level="5.2" data-path="statistiques.html"><a href="statistiques.html#indice-de-shannon"><i class="fa fa-check"></i><b>5.2</b> Indice de Shannon</a></li>
-<li class="chapter" data-level="5.3" data-path="statistiques.html"><a href="statistiques.html#ordination-pcoa"><i class="fa fa-check"></i><b>5.3</b> Ordination (PCoA)</a></li>
-<li class="chapter" data-level="5.4" data-path="statistiques.html"><a href="statistiques.html#lefse"><i class="fa fa-check"></i><b>5.4</b> LEfSe</a></li>
-<li class="chapter" data-level="5.5" data-path="statistiques.html"><a href="statistiques.html#abondances-relatives"><i class="fa fa-check"></i><b>5.5</b> Abondances relatives</a></li>
+<li class="chapter" data-level="6.1" data-path="statistiques.html"><a href="statistiques.html#th%C3%A8me-pour-les-graphiques"><i class="fa fa-check"></i><b>6.1</b> Thème pour les graphiques</a></li>
+<li class="chapter" data-level="6.2" data-path="statistiques.html"><a href="statistiques.html#indice-de-shannon"><i class="fa fa-check"></i><b>6.2</b> Indice de Shannon</a></li>
+<li class="chapter" data-level="6.3" data-path="statistiques.html"><a href="statistiques.html#ordination-pcoa"><i class="fa fa-check"></i><b>6.3</b> Ordination (PCoA)</a></li>
+<li class="chapter" data-level="6.4" data-path="statistiques.html"><a href="statistiques.html#lefse"><i class="fa fa-check"></i><b>6.4</b> LEfSe</a></li>
+<li class="chapter" data-level="6.5" data-path="statistiques.html"><a href="statistiques.html#abondances-relatives"><i class="fa fa-check"></i><b>6.5</b> Abondances relatives</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -188,7 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIO1410 - 2024 - Analyses R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIO1410 - 2026 - Analyses R</a>
           </h1>
         </div>
 
@@ -197,16 +206,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">BIO1410 - 2024 - Analyses R</h1>
+<h1 class="title">BIO1410 - 2026 - Analyses R</h1>
 <p class="author"><em>Karine Villeneuve</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapitre 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Ce petit guide à été rédigé à l’intention des élèves du cours BIO1410 afin de familiariser les étudiants à l’analyse de données de séquençage d’amplicons avec R.</p>
-<p>Avant de débuter toute analyse, il est nécessaire de comprendre les principales fonctionnalités de R. La permière section <a href="introduction-à-r-studio-et-r-markdown.html#introduction-à-r-studio-et-r-markdown">Introduction à R Studio et R Markdown</a> présente donc très brièvement comment utiliser R Mardown avec R Studio.</p>
-<p>Par la suite, la section <a href="tableau-de-mes-asvs-et-blast.html#tableau-de-mes-asvs-et-blast">Tableau de mes ASVs et BLAST</a> comprend un petit script R permettant à l’élève d’identifier les 10 genres bactériens les plus abondants dans ses échantillons récoltés sous sa langue ainsi que sur la paume de sa mains. Ce script permet aussi de générer un tableau de données en format <em>comma seperated value</em> (csv) que l’étudiant devra utiliser pour obtenir les séquences d’acides nucléiques à rechercher sur la base de données du National Center for Biotechnology Information (NCBI) avec leur outil <em>Basic Local Alignment Search Tool</em> (<a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>).</p>
-<p>La section <a href="traitement-des-fastqs.html#traitement-des-fastqs">Traitement des fastqs</a> présente ensuite comment les données brutes du séquençage d’amplicon du gène ARNs 16S ont été traitées dans R afin d’obtenir une matrice de l’abondance relative des variants de séquence d’amplicon (ASVs) par échantillon.</p>
-<p>Finalement, la section <a href="statistiques.html#statistiques">Statistiques</a> présente l’ensemble des analyses statistiques réalisées avec R afin de comparer le microbiome des deux régions échantillonner.</p>
+<p>Ce petit guide à été rédigé à l’intention des élèves du cours BIO1410 afin de familiariser les étudiants au traitement de données de séquençage d’amplicons en utilisant le langage de programmation R avec l’IDE R Studio.</p>
+<ol style="list-style-type: decimal">
+<li><p>La première section <a href="introduction-à-r-et-rstudio.html#introduction-%C3%A0-r-et-rstudio">Introduction à R et RStudio</a> présente brièvement R et R Studio.</p></li>
+<li><p>La seconde section <a href="utiliser-rstudio-et-r-mardown.html#utiliser-rstudio-et-r-mardown">Utiliser RStudio et R Mardown</a> introduit quelques notions de bases en R et explique comment élaborer des scripts avec RStudio en format R ou R Markdown.</p></li>
+<li><p>La troisième section <a href="tableau-de-mes-asvs-et-blast.html#tableau-de-mes-asvs-et-blast">Tableau de mes ASVs et BLAST</a> est un petit exercice de programmation R.</p></li>
+<li><p>La quatrième section <a href="traitement-des-fastqs.html#traitement-des-fastqs">Traitement des fastqs</a> présente ensuite comment les données brutes du séquençage d’amplicon du gène ARNs 16S ont été traitées dans R afin d’obtenir une matrice d’abondance relative des variants de séquence d’amplicon (ASVs) par échantillon.</p></li>
+<li><p>La section <a href="statistiques.html#statistiques">Statistiques</a> présente l’ensemble des analyses statistiques réalisées avec R afin de comparer le microbiote des deux régions échantillonnées.</p></li>
+<li><p>Finalement, la section [Installer R et RStudio ] indique les liens pour télécharger chacun des programmes.</p></li>
+</ol>
+<p>comprend un petit script R permettant à l’élève d’identifier les 10 genres bactériens les plus abondants dans ses échantillons récoltés sous sa langue ainsi que sur la paume de sa mains. Ce script permet aussi de générer un tableau de données en format <em>comma seperated value</em> (csv) que l’étudiant devra utiliser pour obtenir la séquence d’acides nucléiques du taxon choisi. La séquence pourra ensuite être rechercher dans la base de données du National Center for Biotechnology Information (NCBI) avec leur outil <em>Basic Local Alignment Search Tool</em> (<a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>) afin d’obtenir une classification plus précise que le genre.</p>
+<p>La quatrième section [R Markdown] aborde une différentes manière de rédiger ses scripts favorisant l’annotation et l’organisation du code en plus de l’exportation des scripts sous différents formats (PDF, HTML, etc.) pour le partage des scripts.</p>
 
 </div>
             </section>
@@ -215,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="introduction-à-r-studio-et-r-markdown.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-à-r-et-rstudio.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -229,42 +244,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

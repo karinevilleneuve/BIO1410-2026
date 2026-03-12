@@ -1,9 +1,10 @@
 bookdown::gitbook:
   css: style.css
+  code_folding: show
   config:
     toc:
       before: |
-        <li><a href="./">BIO1410-2024</a></li>
+        <li><a href="./">BIO1410-2026</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit: https://github.com/rstudio/bookdown-demo/edit/master/%s

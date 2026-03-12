@@ -12,3 +12,7 @@ pre {
 pre code {
   white-space: inherit;
 }
+.foldable {
+  background: #f7f7f7;
+  border-radius: 5px;
+}
