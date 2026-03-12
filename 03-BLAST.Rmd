@@ -5,7 +5,7 @@
 Vous avez vue en classe une figure représentant l'abondance relative des principaux genres bactériens présents sous la langue ainsi que sur la paume de la main dominante de chacun des scientifiques de votre classe. Vous aimeriez maintenant générer une figure similaire à celle présentée en classe mais comprenant uniquement vos échantillons et incluant l'ASV. Pour ce faire, vous devrez utiliser vos nouvelles connaissances des différentes fonctions R! 
 
 
-Commencez pas créer un nouveau document de type R markdown oũ vous pouvez votre script avec ces commandes qui installerons puis chargerons les librairies que vous devriez avoir à utiliser et chargerons le tableau de données. 
+Commencez par créer un nouveau document de type R markdown oũ vous pouvez votre script avec ces commandes qui installerons puis chargerons les librairies que vous devriez avoir à utiliser et chargerons le tableau de données. 
 
 ```{r, eval=FALSE}
 # Installer les librairies 
