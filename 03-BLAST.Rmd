@@ -44,12 +44,12 @@ Maintenant que vous avez importé le tableau de données, vous devez utiliser R 
 #### ---- Code  ---- ####
 
 unique(df_raw$Scientifique) # (1)
-df_sub = subset(df_raw, Scientifique == "") # (2) 
+df_sub = subset(df_raw, Scientifique == "Leone Norwood Farrell") # (2) 
 
 #### ---- explication  ---- ####
 
 # (1) Afficher les différentes options de noms de scientifique 
-# (2) Filter le tableau de données en inscrivant entre les guillements le nom de la scientifique 
+# (2) Filtrer le tableau de données en inscrivant entre les guillements le nom de la scientifique qui vous a été assignée 
 ```
 
 **Étape 2. Grouper et calculer l'abondance relative**
@@ -78,7 +78,7 @@ valider = df_abond_rel %>% # (4)
 # (3) Pour obtenir l'abondance relative nous créons une nouvelle colonne "Abondance_relat" qui est 
 #     le résultats de Abundance / sum(Abundance)
 
-# (5) Nous validons que la somme est bien de 1 pour chacune des régions 
+# (4) Nous validons que la somme est bien de 1 pour chacune des régions 
 
 ```
 
@@ -88,6 +88,7 @@ valider = df_abond_rel %>% # (4)
 #### ---- Code  ---- ####
 
 df_top = df_abond_rel %>% 
+  group_by(Region) %>%
   arrange(Region, desc(Abondance_relat)) %>% # (1)
   mutate(Order = row_number()) %>% # (2)
   mutate(Taxonomie = ifelse(Order < 11, paste(Phylum, Genus, OTU, sep = "; "), "Autres")) %>% # (3)
@@ -96,20 +97,20 @@ df_top = df_abond_rel %>%
 
 #### ---- explication  ---- ####
 
-# (1) Trier nos données par region puis en fonction de l'abondance relative 
-# (2) Pour chaque région, associer un numéro de 1 à x dans la nouvelle colonne "Order" (1 étant le plus abondant)
-# (3) Générer une nouvelle colonne "Taxonomie" et pour remplir cette colonne, si la valeur de Order est inférieur 
-#     à 10, on copie colle la valeur de la colonne Phylum et colonne Genus, si la valeurs est supérieur, on assigne 
-#     la valeur "Autres" 
+# (1) Trier nos données par région puis en fonction de l'abondance relative 
+# (2) Pour chaque région, associer un numéro de 1 à x dans la nouvelle colonne "Order" (1 étant le taxon le plus abondant)
+# (3) Générer une nouvelle colonne "Taxonomie" et pour remplir cette colonne ; 
+#           si la valeur de Order est < 10, on combine la valeur de la colonne Phylum avec celle de la colonne Genus ; 
+#           si la valeur > 10 on assigne "Autres" 
 # (4) Finalement, nous voulons regrouper les taxons "Autres" ensemble 
-#     alors nous reproduisons les étapes de groupement et addition réalisées précéement (2.4)
+#     alors nous reproduisons les étapes de groupement et addition réalisées précédemment (2.4)
 
 # Créer une palette de couleur unique 
-nbr_unique_tax = length(unique(df_top$Taxonomie)) # Compter le nombre de taxon unique (devrait être ~ 20)
-custom_colors = distinctColorPalette(k = nbr_unique_tax) # Générer une palette de 20 couleur différentes 
-color_names = unique(df_top$Taxonomie) # Associer le nom de nos bactéries à chacune des couleur 
-my_palette = setNames(custom_colors, color_names) # Combiner les couleurs et leur nom
-my_palette[["Autres"]] = "lightgrey" # Associer une valeur gris pâle au groupe "Autre" 
+nbr_unique_tax = length(unique(df_top$Taxonomie)) # Compter le nombre de taxons uniques (~ 20)
+custom_colors = distinctColorPalette(k = nbr_unique_tax) # Générer une palette de 20 couleurs différentes 
+color_names = unique(df_top$Taxonomie) # Associer le nom de nos bactéries à chacune des couleurs 
+my_palette = setNames(custom_colors, color_names) # Combiner les couleurs avec le nom des taxons
+my_palette[["Autres"]] = "lightgrey" # Associer une valeur gris pâle au groupe "Autres" 
 
 # Utiliser la fonction fct_relevel pour que le groupe "Autres" figure en premier dans la légende 
 df_top$Taxonomie = fct_relevel(df_top$Taxonomie, "Autres")

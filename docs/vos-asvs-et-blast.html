@@ -246,12 +246,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb15"><pre class="sourceCode r fold-hide"><code class="sourceCode r"><span id="cb15-1"><a href="vos-asvs-et-blast.html#cb15-1" tabindex="-1"></a><span class="do">#### ---- Code  ---- ####</span></span>
 <span id="cb15-2"><a href="vos-asvs-et-blast.html#cb15-2" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="vos-asvs-et-blast.html#cb15-3" tabindex="-1"></a><span class="fu">unique</span>(df_raw<span class="sc">$</span>Scientifique) <span class="co"># (1)</span></span>
-<span id="cb15-4"><a href="vos-asvs-et-blast.html#cb15-4" tabindex="-1"></a>df_sub <span class="ot">=</span> <span class="fu">subset</span>(df_raw, Scientifique <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="co"># (2) </span></span>
+<span id="cb15-4"><a href="vos-asvs-et-blast.html#cb15-4" tabindex="-1"></a>df_sub <span class="ot">=</span> <span class="fu">subset</span>(df_raw, Scientifique <span class="sc">==</span> <span class="st">&quot;Leone Norwood Farrell&quot;</span>) <span class="co"># (2) </span></span>
 <span id="cb15-5"><a href="vos-asvs-et-blast.html#cb15-5" tabindex="-1"></a></span>
 <span id="cb15-6"><a href="vos-asvs-et-blast.html#cb15-6" tabindex="-1"></a><span class="do">#### ---- explication  ---- ####</span></span>
 <span id="cb15-7"><a href="vos-asvs-et-blast.html#cb15-7" tabindex="-1"></a></span>
 <span id="cb15-8"><a href="vos-asvs-et-blast.html#cb15-8" tabindex="-1"></a><span class="co"># (1) Afficher les différentes options de noms de scientifique </span></span>
-<span id="cb15-9"><a href="vos-asvs-et-blast.html#cb15-9" tabindex="-1"></a><span class="co"># (2) Filter le tableau de données en inscrivant entre les guillements le nom de la scientifique </span></span></code></pre></div>
+<span id="cb15-9"><a href="vos-asvs-et-blast.html#cb15-9" tabindex="-1"></a><span class="co"># (2) Filtrer le tableau de données en inscrivant entre les guillements le nom de la scientifique qui vous a été assignée </span></span></code></pre></div>
 </details>
 <p><strong>Étape 2. Grouper et calculer l’abondance relative</strong></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
@@ -278,51 +278,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-21"><a href="vos-asvs-et-blast.html#cb16-21" tabindex="-1"></a><span class="co"># (3) Pour obtenir l&#39;abondance relative nous créons une nouvelle colonne &quot;Abondance_relat&quot; qui est </span></span>
 <span id="cb16-22"><a href="vos-asvs-et-blast.html#cb16-22" tabindex="-1"></a><span class="co">#     le résultats de Abundance / sum(Abundance)</span></span>
 <span id="cb16-23"><a href="vos-asvs-et-blast.html#cb16-23" tabindex="-1"></a></span>
-<span id="cb16-24"><a href="vos-asvs-et-blast.html#cb16-24" tabindex="-1"></a><span class="co"># (5) Nous validons que la somme est bien de 1 pour chacune des régions </span></span></code></pre></div>
+<span id="cb16-24"><a href="vos-asvs-et-blast.html#cb16-24" tabindex="-1"></a><span class="co"># (4) Nous validons que la somme est bien de 1 pour chacune des régions </span></span></code></pre></div>
 </details>
 <p><strong>Étape 3.Générer la figure</strong></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r fold-hide"><code class="sourceCode r"><span id="cb17-1"><a href="vos-asvs-et-blast.html#cb17-1" tabindex="-1"></a><span class="do">#### ---- Code  ---- ####</span></span>
 <span id="cb17-2"><a href="vos-asvs-et-blast.html#cb17-2" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="vos-asvs-et-blast.html#cb17-3" tabindex="-1"></a>df_top <span class="ot">=</span> df_abond_rel <span class="sc">%&gt;%</span> </span>
-<span id="cb17-4"><a href="vos-asvs-et-blast.html#cb17-4" tabindex="-1"></a>  <span class="fu">arrange</span>(Region, <span class="fu">desc</span>(Abondance_relat)) <span class="sc">%&gt;%</span> <span class="co"># (1)</span></span>
-<span id="cb17-5"><a href="vos-asvs-et-blast.html#cb17-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Order =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> <span class="co"># (2)</span></span>
-<span id="cb17-6"><a href="vos-asvs-et-blast.html#cb17-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Taxonomie =</span> <span class="fu">ifelse</span>(Order <span class="sc">&lt;</span> <span class="dv">11</span>, <span class="fu">paste</span>(Phylum, Genus, OTU, <span class="at">sep =</span> <span class="st">&quot;; &quot;</span>), <span class="st">&quot;Autres&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># (3)</span></span>
-<span id="cb17-7"><a href="vos-asvs-et-blast.html#cb17-7" tabindex="-1"></a>  <span class="fu">group_by</span>(Region, Taxonomie) <span class="sc">%&gt;%</span> <span class="co"># (4) </span></span>
-<span id="cb17-8"><a href="vos-asvs-et-blast.html#cb17-8" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Abondance_relative =</span> <span class="fu">sum</span>(Abondance_relat)) <span class="co"># (4) </span></span>
-<span id="cb17-9"><a href="vos-asvs-et-blast.html#cb17-9" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="vos-asvs-et-blast.html#cb17-10" tabindex="-1"></a><span class="do">#### ---- explication  ---- ####</span></span>
-<span id="cb17-11"><a href="vos-asvs-et-blast.html#cb17-11" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="vos-asvs-et-blast.html#cb17-12" tabindex="-1"></a><span class="co"># (1) Trier nos données par region puis en fonction de l&#39;abondance relative </span></span>
-<span id="cb17-13"><a href="vos-asvs-et-blast.html#cb17-13" tabindex="-1"></a><span class="co"># (2) Pour chaque région, associer un numéro de 1 à x dans la nouvelle colonne &quot;Order&quot; (1 étant le plus abondant)</span></span>
-<span id="cb17-14"><a href="vos-asvs-et-blast.html#cb17-14" tabindex="-1"></a><span class="co"># (3) Générer une nouvelle colonne &quot;Taxonomie&quot; et pour remplir cette colonne, si la valeur de Order est inférieur </span></span>
-<span id="cb17-15"><a href="vos-asvs-et-blast.html#cb17-15" tabindex="-1"></a><span class="co">#     à 10, on copie colle la valeur de la colonne Phylum et colonne Genus, si la valeurs est supérieur, on assigne </span></span>
-<span id="cb17-16"><a href="vos-asvs-et-blast.html#cb17-16" tabindex="-1"></a><span class="co">#     la valeur &quot;Autres&quot; </span></span>
-<span id="cb17-17"><a href="vos-asvs-et-blast.html#cb17-17" tabindex="-1"></a><span class="co"># (4) Finalement, nous voulons regrouper les taxons &quot;Autres&quot; ensemble </span></span>
-<span id="cb17-18"><a href="vos-asvs-et-blast.html#cb17-18" tabindex="-1"></a><span class="co">#     alors nous reproduisons les étapes de groupement et addition réalisées précéement (2.4)</span></span>
-<span id="cb17-19"><a href="vos-asvs-et-blast.html#cb17-19" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="vos-asvs-et-blast.html#cb17-20" tabindex="-1"></a><span class="co"># Créer une palette de couleur unique </span></span>
-<span id="cb17-21"><a href="vos-asvs-et-blast.html#cb17-21" tabindex="-1"></a>nbr_unique_tax <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(df_top<span class="sc">$</span>Taxonomie)) <span class="co"># Compter le nombre de taxon unique (devrait être ~ 20)</span></span>
-<span id="cb17-22"><a href="vos-asvs-et-blast.html#cb17-22" tabindex="-1"></a>custom_colors <span class="ot">=</span> <span class="fu">distinctColorPalette</span>(<span class="at">k =</span> nbr_unique_tax) <span class="co"># Générer une palette de 20 couleur différentes </span></span>
-<span id="cb17-23"><a href="vos-asvs-et-blast.html#cb17-23" tabindex="-1"></a>color_names <span class="ot">=</span> <span class="fu">unique</span>(df_top<span class="sc">$</span>Taxonomie) <span class="co"># Associer le nom de nos bactéries à chacune des couleur </span></span>
-<span id="cb17-24"><a href="vos-asvs-et-blast.html#cb17-24" tabindex="-1"></a>my_palette <span class="ot">=</span> <span class="fu">setNames</span>(custom_colors, color_names) <span class="co"># Combiner les couleurs et leur nom</span></span>
-<span id="cb17-25"><a href="vos-asvs-et-blast.html#cb17-25" tabindex="-1"></a>my_palette[[<span class="st">&quot;Autres&quot;</span>]] <span class="ot">=</span> <span class="st">&quot;lightgrey&quot;</span> <span class="co"># Associer une valeur gris pâle au groupe &quot;Autre&quot; </span></span>
-<span id="cb17-26"><a href="vos-asvs-et-blast.html#cb17-26" tabindex="-1"></a></span>
-<span id="cb17-27"><a href="vos-asvs-et-blast.html#cb17-27" tabindex="-1"></a><span class="co"># Utiliser la fonction fct_relevel pour que le groupe &quot;Autres&quot; figure en premier dans la légende </span></span>
-<span id="cb17-28"><a href="vos-asvs-et-blast.html#cb17-28" tabindex="-1"></a>df_top<span class="sc">$</span>Taxonomie <span class="ot">=</span> <span class="fu">fct_relevel</span>(df_top<span class="sc">$</span>Taxonomie, <span class="st">&quot;Autres&quot;</span>)</span>
-<span id="cb17-29"><a href="vos-asvs-et-blast.html#cb17-29" tabindex="-1"></a></span>
-<span id="cb17-30"><a href="vos-asvs-et-blast.html#cb17-30" tabindex="-1"></a>graph <span class="ot">=</span> <span class="fu">ggplot</span>(df_top, <span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> Abondance_relative, <span class="at">fill =</span> Taxonomie)) <span class="sc">+</span> </span>
-<span id="cb17-31"><a href="vos-asvs-et-blast.html#cb17-31" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;stack&quot;</span>, <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-32"><a href="vos-asvs-et-blast.html#cb17-32" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Région&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb17-33"><a href="vos-asvs-et-blast.html#cb17-33" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Abondance relative&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb17-34"><a href="vos-asvs-et-blast.html#cb17-34" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb17-35"><a href="vos-asvs-et-blast.html#cb17-35" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_palette) <span class="sc">+</span> </span>
-<span id="cb17-36"><a href="vos-asvs-et-blast.html#cb17-36" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb17-37"><a href="vos-asvs-et-blast.html#cb17-37" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span> </span>
-<span id="cb17-38"><a href="vos-asvs-et-blast.html#cb17-38" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">10</span>)) <span class="co"># Spécifier que nous voulons 10 lignes max pour la légendre </span></span>
-<span id="cb17-39"><a href="vos-asvs-et-blast.html#cb17-39" tabindex="-1"></a></span>
-<span id="cb17-40"><a href="vos-asvs-et-blast.html#cb17-40" tabindex="-1"></a><span class="co"># Enregistrer la figure </span></span>
-<span id="cb17-41"><a href="vos-asvs-et-blast.html#cb17-41" tabindex="-1"></a><span class="fu">ggsave</span>(graph, <span class="at">filename =</span> <span class="st">&quot;abondance_relative.pdf&quot;</span>, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
+<span id="cb17-4"><a href="vos-asvs-et-blast.html#cb17-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="vos-asvs-et-blast.html#cb17-5" tabindex="-1"></a>  <span class="fu">arrange</span>(Region, <span class="fu">desc</span>(Abondance_relat)) <span class="sc">%&gt;%</span> <span class="co"># (1)</span></span>
+<span id="cb17-6"><a href="vos-asvs-et-blast.html#cb17-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Order =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> <span class="co"># (2)</span></span>
+<span id="cb17-7"><a href="vos-asvs-et-blast.html#cb17-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Taxonomie =</span> <span class="fu">ifelse</span>(Order <span class="sc">&lt;</span> <span class="dv">11</span>, <span class="fu">paste</span>(Phylum, Genus, OTU, <span class="at">sep =</span> <span class="st">&quot;; &quot;</span>), <span class="st">&quot;Autres&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># (3)</span></span>
+<span id="cb17-8"><a href="vos-asvs-et-blast.html#cb17-8" tabindex="-1"></a>  <span class="fu">group_by</span>(Region, Taxonomie) <span class="sc">%&gt;%</span> <span class="co"># (4) </span></span>
+<span id="cb17-9"><a href="vos-asvs-et-blast.html#cb17-9" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Abondance_relative =</span> <span class="fu">sum</span>(Abondance_relat)) <span class="co"># (4) </span></span>
+<span id="cb17-10"><a href="vos-asvs-et-blast.html#cb17-10" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="vos-asvs-et-blast.html#cb17-11" tabindex="-1"></a><span class="do">#### ---- explication  ---- ####</span></span>
+<span id="cb17-12"><a href="vos-asvs-et-blast.html#cb17-12" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="vos-asvs-et-blast.html#cb17-13" tabindex="-1"></a><span class="co"># (1) Trier nos données par région puis en fonction de l&#39;abondance relative </span></span>
+<span id="cb17-14"><a href="vos-asvs-et-blast.html#cb17-14" tabindex="-1"></a><span class="co"># (2) Pour chaque région, associer un numéro de 1 à x dans la nouvelle colonne &quot;Order&quot; (1 étant le taxon le plus abondant)</span></span>
+<span id="cb17-15"><a href="vos-asvs-et-blast.html#cb17-15" tabindex="-1"></a><span class="co"># (3) Générer une nouvelle colonne &quot;Taxonomie&quot; et pour remplir cette colonne ; </span></span>
+<span id="cb17-16"><a href="vos-asvs-et-blast.html#cb17-16" tabindex="-1"></a><span class="co">#           si la valeur de Order est &lt; 10, on combine la valeur de la colonne Phylum avec celle de la colonne Genus ; </span></span>
+<span id="cb17-17"><a href="vos-asvs-et-blast.html#cb17-17" tabindex="-1"></a><span class="co">#           si la valeur &gt; 10 on assigne &quot;Autres&quot; </span></span>
+<span id="cb17-18"><a href="vos-asvs-et-blast.html#cb17-18" tabindex="-1"></a><span class="co"># (4) Finalement, nous voulons regrouper les taxons &quot;Autres&quot; ensemble </span></span>
+<span id="cb17-19"><a href="vos-asvs-et-blast.html#cb17-19" tabindex="-1"></a><span class="co">#     alors nous reproduisons les étapes de groupement et addition réalisées précédemment (2.4)</span></span>
+<span id="cb17-20"><a href="vos-asvs-et-blast.html#cb17-20" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="vos-asvs-et-blast.html#cb17-21" tabindex="-1"></a><span class="co"># Créer une palette de couleur unique </span></span>
+<span id="cb17-22"><a href="vos-asvs-et-blast.html#cb17-22" tabindex="-1"></a>nbr_unique_tax <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(df_top<span class="sc">$</span>Taxonomie)) <span class="co"># Compter le nombre de taxons uniques (~ 20)</span></span>
+<span id="cb17-23"><a href="vos-asvs-et-blast.html#cb17-23" tabindex="-1"></a>custom_colors <span class="ot">=</span> <span class="fu">distinctColorPalette</span>(<span class="at">k =</span> nbr_unique_tax) <span class="co"># Générer une palette de 20 couleurs différentes </span></span>
+<span id="cb17-24"><a href="vos-asvs-et-blast.html#cb17-24" tabindex="-1"></a>color_names <span class="ot">=</span> <span class="fu">unique</span>(df_top<span class="sc">$</span>Taxonomie) <span class="co"># Associer le nom de nos bactéries à chacune des couleurs </span></span>
+<span id="cb17-25"><a href="vos-asvs-et-blast.html#cb17-25" tabindex="-1"></a>my_palette <span class="ot">=</span> <span class="fu">setNames</span>(custom_colors, color_names) <span class="co"># Combiner les couleurs avec le nom des taxons</span></span>
+<span id="cb17-26"><a href="vos-asvs-et-blast.html#cb17-26" tabindex="-1"></a>my_palette[[<span class="st">&quot;Autres&quot;</span>]] <span class="ot">=</span> <span class="st">&quot;lightgrey&quot;</span> <span class="co"># Associer une valeur gris pâle au groupe &quot;Autres&quot; </span></span>
+<span id="cb17-27"><a href="vos-asvs-et-blast.html#cb17-27" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="vos-asvs-et-blast.html#cb17-28" tabindex="-1"></a><span class="co"># Utiliser la fonction fct_relevel pour que le groupe &quot;Autres&quot; figure en premier dans la légende </span></span>
+<span id="cb17-29"><a href="vos-asvs-et-blast.html#cb17-29" tabindex="-1"></a>df_top<span class="sc">$</span>Taxonomie <span class="ot">=</span> <span class="fu">fct_relevel</span>(df_top<span class="sc">$</span>Taxonomie, <span class="st">&quot;Autres&quot;</span>)</span>
+<span id="cb17-30"><a href="vos-asvs-et-blast.html#cb17-30" tabindex="-1"></a></span>
+<span id="cb17-31"><a href="vos-asvs-et-blast.html#cb17-31" tabindex="-1"></a>graph <span class="ot">=</span> <span class="fu">ggplot</span>(df_top, <span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> Abondance_relative, <span class="at">fill =</span> Taxonomie)) <span class="sc">+</span> </span>
+<span id="cb17-32"><a href="vos-asvs-et-blast.html#cb17-32" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;stack&quot;</span>, <span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-33"><a href="vos-asvs-et-blast.html#cb17-33" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Région&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb17-34"><a href="vos-asvs-et-blast.html#cb17-34" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Abondance relative&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb17-35"><a href="vos-asvs-et-blast.html#cb17-35" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-36"><a href="vos-asvs-et-blast.html#cb17-36" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_palette) <span class="sc">+</span> </span>
+<span id="cb17-37"><a href="vos-asvs-et-blast.html#cb17-37" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb17-38"><a href="vos-asvs-et-blast.html#cb17-38" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb17-39"><a href="vos-asvs-et-blast.html#cb17-39" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">10</span>)) <span class="co"># Spécifier que nous voulons 10 lignes max pour la légendre </span></span>
+<span id="cb17-40"><a href="vos-asvs-et-blast.html#cb17-40" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="vos-asvs-et-blast.html#cb17-41" tabindex="-1"></a><span class="co"># Enregistrer la figure </span></span>
+<span id="cb17-42"><a href="vos-asvs-et-blast.html#cb17-42" tabindex="-1"></a><span class="fu">ggsave</span>(graph, <span class="at">filename =</span> <span class="st">&quot;abondance_relative.pdf&quot;</span>, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
 </details>
 </div>
 <div id="blast" class="section level2 hasAnchor" number="4.2">
