@@ -1,8 +1,8 @@
 # Traitement des fastqs
 
-DADA2 est un pipeline bio-informatique qui comprend une série d’étapes permettant de filtrer les séquences brutes obtenues par le séquençage d'amplicons. Ultimement, le pipeline permet d'obtenir une matrice d'abondance d'ASVs en fonction des échantillons ainsi que la classification taxonomique des séquences associées aux différents ASVs. 
+DADA2 est un pipeline bio-informatique qui comprend une série d’étapes permettant de filtrer les séquences brutes obtenues par le séquençage d'amplicons. Ultimement, le pipeline permet d'obtenir une matrice d'abondance des ASVs en fonction des échantillons ainsi que la classification taxonomique des séquences associées aux différents ASVs. 
 
-DADA2 a deux particularités qui le distingue des autres pipeline courament utilisés. D’une part, il procède la à modélisation de l’erreur dûe au séquençage ce qui est censé permettre des distinguer les séquences mutantes, des séquences érronées. D’autre part, contrairement à d’autres pipelines comme QIIME ou Mothur, DADA2 ne regroupe pas les séquences similaires à 97% en Unités Taxonomiques Opérationelles (OTUs). Ses ASVs ne subissent pas de regroupement si les séqences ne sont pas identiques à 100%.
+DADA2 a deux particularités qui le distingue des autres pipeline couramment utilisés. D’une part, il procède à la modélisation de l’erreur due au séquençage ce qui est censé permettre des distinguer les séquences mutantes, des séquences erronées. D’autre part, contrairement à d’autres pipelines comme QIIME ou Mothur, DADA2 ne regroupe pas les séquences similaires à 97% en Unités Taxonomiques Opérationelles (OTUs). Les ASVs ne subissent pas de regroupement si les séquences ne sont pas identiques à 100%.
 
 ## Pré-analyse
 
@@ -32,9 +32,9 @@ names(fnRs) = sample.names
 
 ## Inspecter la qualité, filtrer et rogner
 
-**Inspecter la qualités des séquences** 
+**Inspecter la qualité des séquences** 
 
-Afin d'inspecter la qualité des séquences nous utilisons la commande `plotQualityProfile`. Cette commande représente graphiquement le Q score (axe des Y) associé à chaque nucléotide (axe des X). La médianne est en vert, et les quartiles en orange pointillé. Le Q score est une mesure qui nous renseigne sur la précision du séquençage (voir tableau ci-dessous). 
+Afin d'inspecter la qualité des séquences nous utilisons la commande `plotQualityProfile`. Cette commande représente graphiquement le Q score (axe des Y) associé à chaque nucléotide (axe des X). La médiane est en vert, et les quartiles en orange pointillé. Le Q score est une mesure qui nous renseigne sur la précision du séquençage (voir tableau ci-dessous). 
   
     Q score           Précision
   -----------       ------------- 
@@ -54,7 +54,7 @@ plotQualityProfile(fnRs, aggregate = TRUE)
 knitr::include_graphics("data/plotqualityprofile.png")
 ```
 
-L’analyse de ces graphiques nous permet donc de choisir les paramètres de filtrage et de rognage de la prochaine étape. La qualité des séquences du brin Forward est généralement de meilleur qualité que celle des séquences du brin Reverse. L'intégralité du brin Forward (300 nucléotides) est d'assez bonnes qualité pour le conserver entier alors que pour le brin Reverse nous supprimerons les nucléotides après la position 240. En observant les graphiques générés, vous pouvesz constater que le début des séquences est aussi de moins bonne qualité et comprend les amorces que nous devons retirer. 
+L’analyse de ces graphiques nous permet donc de choisir les paramètres de filtrage et de rognage de la prochaine étape. La qualité des séquences du brin Forward est généralement de meilleure qualité que celle des séquences du brin Reverse. L'intégralité du brin Forward (300 nucléotides) est d'assez bonnes qualité pour le conserver entier alors que pour le brin Reverse nous supprimerons les nucléotides après la position 240. En observant les graphiques générés, vous pouvez constater que le début des séquences est aussi de moins bonne qualité et comprend les amorces que nous devons retirer. 
 
 **Filtrer et rogner les séquences** 
 
@@ -85,20 +85,20 @@ out = filterAndTrim(fnFs, filtFs, fnRs, filtRs, trimLeft = c(16,19), truncLen=c(
 
 ## Retirer les erreurs de nucléotides 
 
-Cet étape consiste à estimer le taux d’erreur de séquençage. Son but est de permettre de différencier les séquences mutantes et les séquences érronées.Le modèle d’erreur est calculé en alternant l’estimation des taux d’erreur et l’inférence de la composition de l’échantillon jusqu’à ce qu’ils convergent vers une solution cohérente.
+Cette étape consiste à estimer le taux d’erreur de séquençage. Son but est de permettre de différencier les séquences mutantes et les séquences érronées. Le modèle d’erreur est calculé en alternant l’estimation des taux d’erreur et l’inférence de la composition de l’échantillon jusqu’à ce qu’ils convergent vers une solution cohérente.
 
 ```{r, eval= FALSE}
 errF = learnErrors(filtFs, multithread=TRUE, randomize=TRUE)
 errR = learnErrors(filtRs, multithread=TRUE, randomize=TRUE)
 ```
 
-Nous pouvons maintenant appliquer l'algorithme entraîné sur nos séquences afin de retirer les nulcéotides erronés 
+Nous pouvons maintenant appliquer l'algorithme entraîné sur nos séquences afin de retirer les nucléotides erronés 
 ```{r, eval= FALSE}
 dadaFs = dada(filtFs, err = errF, pool = "pseudo", multithread=TRUE)
 dadaRs = dada(filtRs, err = errR, pool = "pseudo", multithread=TRUE)
 ```
 
-## Gnérer la matrice d'abondance d'ASVs par échantillon 
+## Générer la matrice d'abondance d'ASVs par échantillon 
 
 Tout l’intérêt du séquençage en paire réside dans le but de fusionner les deux brins afin d’accroitre notre confiance en leur fiabilité. La fusion permet également d’obtenir des amplicons plus long.
 
@@ -106,16 +106,16 @@ Tout l’intérêt du séquençage en paire réside dans le but de fusionner les
 mergers = mergePairs(dadaFs, filtFs, dadaRs, filtRs)
 ```
 
-Nous avons enfin notre matrice d'abondance d'ASVs que nous allons stoquer dans l’objet seqtab. 
+Nous avons enfin notre matrice d'abondance d'ASVs que nous allons stocker dans l’objet seqtab. 
 ```{r, eval = FALSE} 
 # Construire la table d'ASV avec les séquences combinées  
 seqtab = makeSequenceTable(mergers)
 ```
 
-L'étape de retrait des chimère vise à éliminer toutes les séquences non biologiques qui sont produites lorsqu'une séquence n'est pas complètement amplifié lors de la PCR et qu'elle s'hybride avec l'amorce lors du prochain cycle.  
+L'étape de retrait des chimères vise à éliminer toutes les séquences non biologiques qui sont produites lorsqu'une séquence n'est pas complètement amplifié lors de la PCR et qu'elle s'hybride avec l'amorce lors du prochain cycle.  
 ```{r, eval = FALSE}
 seqtab.nochim = removeBimeraDenovo(seqtab, method = "consensus", multithread = TRUE)
-# Comparer la dimension de la tables d'ASV avec et sans chimières
+# Comparer la dimension de la tables d'ASV avec et sans chimères
 dim(seqtab.nochim)
 sum(seqtab.nochim)/sum(seqtab)
 ```
@@ -128,7 +128,7 @@ Grâce à l’implémentation de la méthode de classification naïve bayésienn
 taxa = assignTaxonomy(seqtab.nochim, "~/16S_Project/silva_nr99_v138.1_train_set.fa.gz", multithread=TRUE, tryRC=TRUE)
 ```
 
-Comme nous avons plusieurs ASVs non classifié à différents rangs taxonomique, nous allons venir copier le rang taxonomique supérieur suivant du mot "Unclassified" aux ASVs non-classifiés. 
+Comme nous avons plusieurs ASVs non classifié à différents rangs taxonomiques, nous allons venir copier le rang taxonomique supérieur suivant du mot "Unclassified" aux ASVs non-classifiés. 
 
 ```{r, eval= FALSE}
 taxid = data.frame(t(taxa))
@@ -150,7 +150,7 @@ seqtab.nochim = seqtab.nochim[,colnames(seqtab.nochim) %in% rownames(taxid)]
 meta = read.table("data/metadata.csv", sep = ",", row.names = 1, header = TRUE)
 # Combiner la matrice d'aboncance, le tableau de métadonnées et la table de taxonomique dans un object de type phyloseq
 ps = phyloseq(otu_table(t(seqtab.nochim), taxa_are_rows=TRUE), tax_table(as.matrix(taxid)), sample_data(meta))
-# On identifie la prévalence des ASVs présent dans les échantillons contrôles et dans les échantillons réel
+# On calcule la prévalence des ASVs présents dans les échantillons contrôles
 contamdf.prev = isContaminant(ps, method="prevalence", neg="CTRL", threshold=0.5)
 # On dénombre les ASVs contaminant VS réel 
 table(contamdf.prev$contaminant) 
@@ -161,7 +161,7 @@ ps_decontam=subset_samples(ps.noncontam, !CTRL=="TRUE")
 ``` 
 
 ## Obtenir les séquences d'acides nucléiques (ADN)
-Nous voulons conserver la séquences d'ADN correspondant à chacun des ASVs afin de pouvoir ultimement utiliser cette séquences avec la base de données BLAST de NCBI. 
+Nous voulons conserver la séquence d'ADN correspondant à chacun des ASVs afin de pouvoir ultimement utiliser cette séquence avec la base de données BLAST de NCBI. 
 
 ```{r, eval= FALSE}
 # On extrait les séquences d'ADN 
@@ -183,7 +183,7 @@ Nous raréfions ensuite au premier nombre de séquence au-dessus de 1000. Dans n
 ```{r, eval=FALSE}
 # Générer une matrix du nombre de séquences par échantillons
 sample_size = as.data.frame(sample_sums(ps1))
-# Filtrer pour trouver la plus petit valeur au-dessus de 1000 
+# Filtrer pour trouver la plus petite valeur au-dessus de 1000 
 rare_value = sample_size[which.max((sample_size[,1] >= 1000)/sample_size[,1]),]
 # Raréfier à cette valeur 
 ps_rare = rarefy_even_depth(ps1, rare_value, rngseed = 112, replace = FALSE, trimOTUs = TRUE, verbose = TRUE) 

@@ -8,7 +8,7 @@ utiliser-rstudio-et-r-mardown
 pourquoi-utiliser-r-markdown
 utliser-r-markdowm
 bloc-de-codes
-définir-le-répertoire-de-travail-par-défault
+définir-le-répertoire-de-travail-par-défaut
 importer-des-données
 manipulation-de-variables-et-types-de-données
 structures-des-données
@@ -20,7 +20,7 @@ traitement-des-fastqs
 pré-analyse
 inspecter-la-qualité-filtrer-et-rogner
 retirer-les-erreurs-de-nucléotides
-gnérer-la-matrice-dabondance-dasvs-par-échantillon
+générer-la-matrice-dabondance-dasvs-par-échantillon
 classification-taxonomique
 retirer-les-asvs-potentiellement-issue-de-contamination
 obtenir-les-séquences-dacides-nucléiques-adn

@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#utliser-r-markdowm"><i class="fa fa-check"></i><b>3.2</b> Utliser R Markdowm</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#bloc-de-codes"><i class="fa fa-check"></i><b>3.2.1</b> Bloc de codes</a></li>
-<li class="chapter" data-level="3.2.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#d%C3%A9finir-le-r%C3%A9pertoire-de-travail-par-d%C3%A9fault"><i class="fa fa-check"></i><b>3.2.2</b> Définir le répertoire de travail par défault</a></li>
+<li class="chapter" data-level="3.2.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#d%C3%A9finir-le-r%C3%A9pertoire-de-travail-par-d%C3%A9faut"><i class="fa fa-check"></i><b>3.2.2</b> Définir le répertoire de travail par défaut</a></li>
 <li class="chapter" data-level="3.2.3" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#importer-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.3</b> Importer des données</a></li>
 <li class="chapter" data-level="3.2.4" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#manipulation-de-variables-et-types-de-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.4</b> Manipulation de variables et types de données</a></li>
 <li class="chapter" data-level="3.2.5" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#structures-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.5</b> Structures des données</a></li>
@@ -174,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#pr%C3%A9-analyse"><i class="fa fa-check"></i><b>5.1</b> Pré-analyse</a></li>
 <li class="chapter" data-level="5.2" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#inspecter-la-qualit%C3%A9-filtrer-et-rogner"><i class="fa fa-check"></i><b>5.2</b> Inspecter la qualité, filtrer et rogner</a></li>
 <li class="chapter" data-level="5.3" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#retirer-les-erreurs-de-nucl%C3%A9otides"><i class="fa fa-check"></i><b>5.3</b> Retirer les erreurs de nucléotides</a></li>
-<li class="chapter" data-level="5.4" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#gn%C3%A9rer-la-matrice-dabondance-dasvs-par-%C3%A9chantillon"><i class="fa fa-check"></i><b>5.4</b> Gnérer la matrice d’abondance d’ASVs par échantillon</a></li>
+<li class="chapter" data-level="5.4" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#g%C3%A9n%C3%A9rer-la-matrice-dabondance-dasvs-par-%C3%A9chantillon"><i class="fa fa-check"></i><b>5.4</b> Générer la matrice d’abondance d’ASVs par échantillon</a></li>
 <li class="chapter" data-level="5.5" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#classification-taxonomique"><i class="fa fa-check"></i><b>5.5</b> Classification taxonomique</a></li>
 <li class="chapter" data-level="5.6" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#retirer-les-asvs-potentiellement-issue-de-contamination"><i class="fa fa-check"></i><b>5.6</b> Retirer les ASVs potentiellement issue de contamination</a></li>
 <li class="chapter" data-level="5.7" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#obtenir-les-s%C3%A9quences-dacides-nucl%C3%A9iques-adn"><i class="fa fa-check"></i><b>5.7</b> Obtenir les séquences d’acides nucléiques (ADN)</a></li>
@@ -211,8 +211,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="traitement-des-fastqs" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapitre 5</span> Traitement des fastqs<a href="traitement-des-fastqs.html#traitement-des-fastqs" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>DADA2 est un pipeline bio-informatique qui comprend une série d’étapes permettant de filtrer les séquences brutes obtenues par le séquençage d’amplicons. Ultimement, le pipeline permet d’obtenir une matrice d’abondance d’ASVs en fonction des échantillons ainsi que la classification taxonomique des séquences associées aux différents ASVs.</p>
-<p>DADA2 a deux particularités qui le distingue des autres pipeline courament utilisés. D’une part, il procède la à modélisation de l’erreur dûe au séquençage ce qui est censé permettre des distinguer les séquences mutantes, des séquences érronées. D’autre part, contrairement à d’autres pipelines comme QIIME ou Mothur, DADA2 ne regroupe pas les séquences similaires à 97% en Unités Taxonomiques Opérationelles (OTUs). Ses ASVs ne subissent pas de regroupement si les séqences ne sont pas identiques à 100%.</p>
+<p>DADA2 est un pipeline bio-informatique qui comprend une série d’étapes permettant de filtrer les séquences brutes obtenues par le séquençage d’amplicons. Ultimement, le pipeline permet d’obtenir une matrice d’abondance des ASVs en fonction des échantillons ainsi que la classification taxonomique des séquences associées aux différents ASVs.</p>
+<p>DADA2 a deux particularités qui le distingue des autres pipeline couramment utilisés. D’une part, il procède à la modélisation de l’erreur due au séquençage ce qui est censé permettre des distinguer les séquences mutantes, des séquences erronées. D’autre part, contrairement à d’autres pipelines comme QIIME ou Mothur, DADA2 ne regroupe pas les séquences similaires à 97% en Unités Taxonomiques Opérationelles (OTUs). Les ASVs ne subissent pas de regroupement si les séquences ne sont pas identiques à 100%.</p>
 <div id="pré-analyse" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Pré-analyse<a href="traitement-des-fastqs.html#pr%C3%A9-analyse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Importer les librairies que nous utilisons pour traiter les données</p>
@@ -240,8 +240,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="inspecter-la-qualité-filtrer-et-rogner" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Inspecter la qualité, filtrer et rogner<a href="traitement-des-fastqs.html#inspecter-la-qualit%C3%A9-filtrer-et-rogner" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Inspecter la qualités des séquences</strong></p>
-<p>Afin d’inspecter la qualité des séquences nous utilisons la commande <code>plotQualityProfile</code>. Cette commande représente graphiquement le Q score (axe des Y) associé à chaque nucléotide (axe des X). La médianne est en vert, et les quartiles en orange pointillé. Le Q score est une mesure qui nous renseigne sur la précision du séquençage (voir tableau ci-dessous).</p>
+<p><strong>Inspecter la qualité des séquences</strong></p>
+<p>Afin d’inspecter la qualité des séquences nous utilisons la commande <code>plotQualityProfile</code>. Cette commande représente graphiquement le Q score (axe des Y) associé à chaque nucléotide (axe des X). La médiane est en vert, et les quartiles en orange pointillé. Le Q score est une mesure qui nous renseigne sur la précision du séquençage (voir tableau ci-dessous).</p>
 <table>
 <thead>
 <tr class="header">
@@ -273,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-2"><a href="traitement-des-fastqs.html#cb21-2" tabindex="-1"></a><span class="fu">plotQualityProfile</span>(fnRs, <span class="at">aggregate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
 <p><img src="data/plotqualityprofile.png" alt="" width="100%" style="display: block; margin: auto;" /></p>
-<p>L’analyse de ces graphiques nous permet donc de choisir les paramètres de filtrage et de rognage de la prochaine étape. La qualité des séquences du brin Forward est généralement de meilleur qualité que celle des séquences du brin Reverse. L’intégralité du brin Forward (300 nucléotides) est d’assez bonnes qualité pour le conserver entier alors que pour le brin Reverse nous supprimerons les nucléotides après la position 240. En observant les graphiques générés, vous pouvesz constater que le début des séquences est aussi de moins bonne qualité et comprend les amorces que nous devons retirer.</p>
+<p>L’analyse de ces graphiques nous permet donc de choisir les paramètres de filtrage et de rognage de la prochaine étape. La qualité des séquences du brin Forward est généralement de meilleure qualité que celle des séquences du brin Reverse. L’intégralité du brin Forward (300 nucléotides) est d’assez bonnes qualité pour le conserver entier alors que pour le brin Reverse nous supprimerons les nucléotides après la position 240. En observant les graphiques générés, vous pouvez constater que le début des séquences est aussi de moins bonne qualité et comprend les amorces que nous devons retirer.</p>
 <p><strong>Filtrer et rogner les séquences</strong></p>
 <p>Tout d’abord nous créons un dossier <code>filtered</code> ainsi que les objets <code>filtFs</code> <code>filtRs</code> pour stoquer les séquences filtrées.</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
@@ -303,32 +303,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="retirer-les-erreurs-de-nucléotides" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Retirer les erreurs de nucléotides<a href="traitement-des-fastqs.html#retirer-les-erreurs-de-nucl%C3%A9otides" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Cet étape consiste à estimer le taux d’erreur de séquençage. Son but est de permettre de différencier les séquences mutantes et les séquences érronées.Le modèle d’erreur est calculé en alternant l’estimation des taux d’erreur et l’inférence de la composition de l’échantillon jusqu’à ce qu’ils convergent vers une solution cohérente.</p>
+<p>Cette étape consiste à estimer le taux d’erreur de séquençage. Son but est de permettre de différencier les séquences mutantes et les séquences érronées. Le modèle d’erreur est calculé en alternant l’estimation des taux d’erreur et l’inférence de la composition de l’échantillon jusqu’à ce qu’ils convergent vers une solution cohérente.</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="traitement-des-fastqs.html#cb24-1" tabindex="-1"></a>errF <span class="ot">=</span> <span class="fu">learnErrors</span>(filtFs, <span class="at">multithread=</span><span class="cn">TRUE</span>, <span class="at">randomize=</span><span class="cn">TRUE</span>)</span>
 <span id="cb24-2"><a href="traitement-des-fastqs.html#cb24-2" tabindex="-1"></a>errR <span class="ot">=</span> <span class="fu">learnErrors</span>(filtRs, <span class="at">multithread=</span><span class="cn">TRUE</span>, <span class="at">randomize=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
-<p>Nous pouvons maintenant appliquer l’algorithme entraîné sur nos séquences afin de retirer les nulcéotides erronés</p>
+<p>Nous pouvons maintenant appliquer l’algorithme entraîné sur nos séquences afin de retirer les nucléotides erronés</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="traitement-des-fastqs.html#cb25-1" tabindex="-1"></a>dadaFs <span class="ot">=</span> <span class="fu">dada</span>(filtFs, <span class="at">err =</span> errF, <span class="at">pool =</span> <span class="st">&quot;pseudo&quot;</span>, <span class="at">multithread=</span><span class="cn">TRUE</span>)</span>
 <span id="cb25-2"><a href="traitement-des-fastqs.html#cb25-2" tabindex="-1"></a>dadaRs <span class="ot">=</span> <span class="fu">dada</span>(filtRs, <span class="at">err =</span> errR, <span class="at">pool =</span> <span class="st">&quot;pseudo&quot;</span>, <span class="at">multithread=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
 </div>
-<div id="gnérer-la-matrice-dabondance-dasvs-par-échantillon" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Gnérer la matrice d’abondance d’ASVs par échantillon<a href="traitement-des-fastqs.html#gn%C3%A9rer-la-matrice-dabondance-dasvs-par-%C3%A9chantillon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="générer-la-matrice-dabondance-dasvs-par-échantillon" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Générer la matrice d’abondance d’ASVs par échantillon<a href="traitement-des-fastqs.html#g%C3%A9n%C3%A9rer-la-matrice-dabondance-dasvs-par-%C3%A9chantillon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Tout l’intérêt du séquençage en paire réside dans le but de fusionner les deux brins afin d’accroitre notre confiance en leur fiabilité. La fusion permet également d’obtenir des amplicons plus long.</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="traitement-des-fastqs.html#cb26-1" tabindex="-1"></a>mergers <span class="ot">=</span> <span class="fu">mergePairs</span>(dadaFs, filtFs, dadaRs, filtRs)</span></code></pre></div>
 </details>
-<p>Nous avons enfin notre matrice d’abondance d’ASVs que nous allons stoquer dans l’objet seqtab.</p>
+<p>Nous avons enfin notre matrice d’abondance d’ASVs que nous allons stocker dans l’objet seqtab.</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="traitement-des-fastqs.html#cb27-1" tabindex="-1"></a><span class="co"># Construire la table d&#39;ASV avec les séquences combinées  </span></span>
 <span id="cb27-2"><a href="traitement-des-fastqs.html#cb27-2" tabindex="-1"></a>seqtab <span class="ot">=</span> <span class="fu">makeSequenceTable</span>(mergers)</span></code></pre></div>
 </details>
-<p>L’étape de retrait des chimère vise à éliminer toutes les séquences non biologiques qui sont produites lorsqu’une séquence n’est pas complètement amplifié lors de la PCR et qu’elle s’hybride avec l’amorce lors du prochain cycle.</p>
+<p>L’étape de retrait des chimères vise à éliminer toutes les séquences non biologiques qui sont produites lorsqu’une séquence n’est pas complètement amplifié lors de la PCR et qu’elle s’hybride avec l’amorce lors du prochain cycle.</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="traitement-des-fastqs.html#cb28-1" tabindex="-1"></a>seqtab.nochim <span class="ot">=</span> <span class="fu">removeBimeraDenovo</span>(seqtab, <span class="at">method =</span> <span class="st">&quot;consensus&quot;</span>, <span class="at">multithread =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb28-2"><a href="traitement-des-fastqs.html#cb28-2" tabindex="-1"></a><span class="co"># Comparer la dimension de la tables d&#39;ASV avec et sans chimières</span></span>
+<span id="cb28-2"><a href="traitement-des-fastqs.html#cb28-2" tabindex="-1"></a><span class="co"># Comparer la dimension de la tables d&#39;ASV avec et sans chimères</span></span>
 <span id="cb28-3"><a href="traitement-des-fastqs.html#cb28-3" tabindex="-1"></a><span class="fu">dim</span>(seqtab.nochim)</span>
 <span id="cb28-4"><a href="traitement-des-fastqs.html#cb28-4" tabindex="-1"></a><span class="fu">sum</span>(seqtab.nochim)<span class="sc">/</span><span class="fu">sum</span>(seqtab)</span></code></pre></div>
 </details>
@@ -339,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="traitement-des-fastqs.html#cb29-1" tabindex="-1"></a>taxa <span class="ot">=</span> <span class="fu">assignTaxonomy</span>(seqtab.nochim, <span class="st">&quot;~/16S_Project/silva_nr99_v138.1_train_set.fa.gz&quot;</span>, <span class="at">multithread=</span><span class="cn">TRUE</span>, <span class="at">tryRC=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
-<p>Comme nous avons plusieurs ASVs non classifié à différents rangs taxonomique, nous allons venir copier le rang taxonomique supérieur suivant du mot “Unclassified” aux ASVs non-classifiés.</p>
+<p>Comme nous avons plusieurs ASVs non classifié à différents rangs taxonomiques, nous allons venir copier le rang taxonomique supérieur suivant du mot “Unclassified” aux ASVs non-classifiés.</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="traitement-des-fastqs.html#cb30-1" tabindex="-1"></a>taxid <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">t</span>(taxa))</span>
 <span id="cb30-2"><a href="traitement-des-fastqs.html#cb30-2" tabindex="-1"></a>taxid[] <span class="ot">=</span> <span class="fu">lapply</span>(taxid, as.character)</span>
@@ -360,7 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb31-2"><a href="traitement-des-fastqs.html#cb31-2" tabindex="-1"></a>meta <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/metadata.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb31-3"><a href="traitement-des-fastqs.html#cb31-3" tabindex="-1"></a><span class="co"># Combiner la matrice d&#39;aboncance, le tableau de métadonnées et la table de taxonomique dans un object de type phyloseq</span></span>
 <span id="cb31-4"><a href="traitement-des-fastqs.html#cb31-4" tabindex="-1"></a>ps <span class="ot">=</span> <span class="fu">phyloseq</span>(<span class="fu">otu_table</span>(<span class="fu">t</span>(seqtab.nochim), <span class="at">taxa_are_rows=</span><span class="cn">TRUE</span>), <span class="fu">tax_table</span>(<span class="fu">as.matrix</span>(taxid)), <span class="fu">sample_data</span>(meta))</span>
-<span id="cb31-5"><a href="traitement-des-fastqs.html#cb31-5" tabindex="-1"></a><span class="co"># On identifie la prévalence des ASVs présent dans les échantillons contrôles et dans les échantillons réel</span></span>
+<span id="cb31-5"><a href="traitement-des-fastqs.html#cb31-5" tabindex="-1"></a><span class="co"># On calcule la prévalence des ASVs présents dans les échantillons contrôles</span></span>
 <span id="cb31-6"><a href="traitement-des-fastqs.html#cb31-6" tabindex="-1"></a>contamdf.prev <span class="ot">=</span> <span class="fu">isContaminant</span>(ps, <span class="at">method=</span><span class="st">&quot;prevalence&quot;</span>, <span class="at">neg=</span><span class="st">&quot;CTRL&quot;</span>, <span class="at">threshold=</span><span class="fl">0.5</span>)</span>
 <span id="cb31-7"><a href="traitement-des-fastqs.html#cb31-7" tabindex="-1"></a><span class="co"># On dénombre les ASVs contaminant VS réel </span></span>
 <span id="cb31-8"><a href="traitement-des-fastqs.html#cb31-8" tabindex="-1"></a><span class="fu">table</span>(contamdf.prev<span class="sc">$</span>contaminant) </span>
@@ -372,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="obtenir-les-séquences-dacides-nucléiques-adn" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> Obtenir les séquences d’acides nucléiques (ADN)<a href="traitement-des-fastqs.html#obtenir-les-s%C3%A9quences-dacides-nucl%C3%A9iques-adn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Nous voulons conserver la séquences d’ADN correspondant à chacun des ASVs afin de pouvoir ultimement utiliser cette séquences avec la base de données BLAST de NCBI.</p>
+<p>Nous voulons conserver la séquence d’ADN correspondant à chacun des ASVs afin de pouvoir ultimement utiliser cette séquence avec la base de données BLAST de NCBI.</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="traitement-des-fastqs.html#cb32-1" tabindex="-1"></a><span class="co"># On extrait les séquences d&#39;ADN </span></span>
 <span id="cb32-2"><a href="traitement-des-fastqs.html#cb32-2" tabindex="-1"></a>dna <span class="ot">=</span> Biostrings<span class="sc">::</span><span class="fu">DNAStringSet</span>(<span class="fu">taxa_names</span>(ps_decontam))</span>
@@ -394,7 +394,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="traitement-des-fastqs.html#cb34-1" tabindex="-1"></a><span class="co"># Générer une matrix du nombre de séquences par échantillons</span></span>
 <span id="cb34-2"><a href="traitement-des-fastqs.html#cb34-2" tabindex="-1"></a>sample_size <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">sample_sums</span>(ps1))</span>
-<span id="cb34-3"><a href="traitement-des-fastqs.html#cb34-3" tabindex="-1"></a><span class="co"># Filtrer pour trouver la plus petit valeur au-dessus de 1000 </span></span>
+<span id="cb34-3"><a href="traitement-des-fastqs.html#cb34-3" tabindex="-1"></a><span class="co"># Filtrer pour trouver la plus petite valeur au-dessus de 1000 </span></span>
 <span id="cb34-4"><a href="traitement-des-fastqs.html#cb34-4" tabindex="-1"></a>rare_value <span class="ot">=</span> sample_size[<span class="fu">which.max</span>((sample_size[,<span class="dv">1</span>] <span class="sc">&gt;=</span> <span class="dv">1000</span>)<span class="sc">/</span>sample_size[,<span class="dv">1</span>]),]</span>
 <span id="cb34-5"><a href="traitement-des-fastqs.html#cb34-5" tabindex="-1"></a><span class="co"># Raréfier à cette valeur </span></span>
 <span id="cb34-6"><a href="traitement-des-fastqs.html#cb34-6" tabindex="-1"></a>ps_rare <span class="ot">=</span> <span class="fu">rarefy_even_depth</span>(ps1, rare_value, <span class="at">rngseed =</span> <span class="dv">112</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>, <span class="at">trimOTUs =</span> <span class="cn">TRUE</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>) </span>

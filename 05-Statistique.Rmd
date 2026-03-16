@@ -4,15 +4,15 @@ Importer les libraires que nous devons utiliser
 ```{r, eval = FALSE}
 library(vegan) # Plusieurs fonctions utiles en écologie 
 library(tidyverse) # Manipulation de tableaux de données 
-library(forcats) # Pour transformer des variable en facteurs avec un order précis "fct_relevel"
+library(forcats) # Pour transformer des variables en facteurs avec un ordre précis "fct_relevel"
 library(dplyr) # Manipulation de tableaux de données 
 library(tidyr) # Manipulation de tableaux de données 
 library(randomcoloR) # Générer palette de couleur 
 library(ggplot2) # Graphique 
-library(ggtext) # Utiliser le format markdown dans les graphique (Genre en italique)
+library(ggtext) # Utiliser le format markdown dans les graphiques (Genre en italique)
 library(ggpubr) # Pour combiner des graphiques 
-library(export) # Pour enregistrer des graphique des bonne qualité 
-library(reshape2) # Formatter des matrice à partir de tableaux 
+library(export) # Pour enregistrer des graphiques des bonne qualité 
+library(reshape2) # Formatter des matrices à partir de tableaux 
 library(glue) # Copier-coller du texte ensemble 
 ```
 
@@ -72,7 +72,7 @@ validate = df_agg %>%
   summarise(Sum = sum(Relative_abundance))
 # All good 
 
-# Continuous - Identifions les 15 genres qui sont les plus abondant dans la mains et sous la langue. 
+# Identifer les 15 genres qui sont les plus abondant dans la main et sous la langue. 
 df_top = df_agg %>% 
   group_by(Region, Taxonomie) %>%
   summarise(mean_relabund = mean(Relative_abundance)) %>%
@@ -184,7 +184,7 @@ row.names(meta_data) = meta_data$Sample
 df_graphique = merge(df_shannon, meta_data, by = "Sample")
 ```
 
-Maintenant que nous avons les valeurs de diversité (indice de Shannon) nous aimerions comparer ces valeurs en fonction de la région échantilloné (langue et mains). Pour ce faire, nous pouvons utiliser un test de t de student, mais nous devons avant nous assurer que nos données respectent les postulats de ce test (distribution normale et variance similaire)
+Maintenant que nous avons les valeurs de diversité (indice de Shannon) nous aimerions comparer ces valeurs en fonction de la région échantillonnée (langue et main). Pour ce faire, nous pouvons utiliser un test de t de student, mais nous devons avant nous assurer que nos données respectent les postulats de ce test (distribution normale et variance similaire)
 ```{r, eval = FALSE}
 # Est ce que les données ont une distibution gausienne (normale) ? 
 valeur_shapiro=list() # créer une liste vide 
@@ -195,11 +195,11 @@ for (region in unique(df_graphique$Region)){
     valeur_shapiro = append(valeur_shapiro,ok$p.value)
 }
 data.frame(valeur_shapiro) 
-# Pour nos deux régions (langue et mains) la distribution des valeurs de Shannon suit une distribution normale 
+# Pour nos deux régions (langue et main) la distribution des valeurs de Shannon suit une distribution normale 
 # (p est supérieur à 0.05)
 
 # Est ce que la variance est similaire ? 
-# Nous pouvons facilement tester la vairance avec la fonction var.test
+# Nous pouvons facilement tester la variance avec la fonction var.test
 var.test(Shannon ~ Region, df_graphique, 
          alternative = "two.sided")
 
@@ -237,19 +237,19 @@ knitr::include_graphics("data/shannon.svg")
 asv_hellinger = decostand(df_asv, method = "hellinger")
 # Calculer l'indice de distance de Bray-Curtis entre chaque échantillon 
 dist = vegdist(asv_hellinger, method = "bray")
-# Générer l'ordination avec les fonction R de bases.
+# Générer l'ordination avec la fonction R cmdscale
 PCOA = cmdscale(dist, eig=TRUE, add=TRUE) 
 # On extrait les coordonnées des points 
 position = PCOA$points 
 # Changer le nom des colonnes 
 colnames(position) = c("Axe.1", "Axe.2") 
-# get percentage of variation explained by each axis 
-percent_explained = 100*PCOA$eig/sum(PCOA$eig) 
-# reduce number of digits (arrondir)
+# Extraire le pourcentage de variation expliqué par les deux premiers axes 
+percent_explained = 100 * PCOA$eig / sum(PCOA$eig) 
+# Arrondir 
 reduced_percent = format(round(percent_explained[1:2], digits = 2), nsmall = 1, trim = TRUE) 
-# Generate pretty labels for plot 
+# Générer des beaux titres pour les axes  
 pretty_labs = c(glue("Axe 1 ({reduced_percent[1]}%)"), glue("Axe 2 ({reduced_percent[2]}%)")) 
-# combine PCOA results with metadata 
+# Combiner les résultats de la PCOA avec les méta données  
 df = merge(position, meta_data, by = 0) 
 ```
 

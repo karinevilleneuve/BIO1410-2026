@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#utliser-r-markdowm"><i class="fa fa-check"></i><b>3.2</b> Utliser R Markdowm</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#bloc-de-codes"><i class="fa fa-check"></i><b>3.2.1</b> Bloc de codes</a></li>
-<li class="chapter" data-level="3.2.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#d%C3%A9finir-le-r%C3%A9pertoire-de-travail-par-d%C3%A9fault"><i class="fa fa-check"></i><b>3.2.2</b> Définir le répertoire de travail par défault</a></li>
+<li class="chapter" data-level="3.2.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#d%C3%A9finir-le-r%C3%A9pertoire-de-travail-par-d%C3%A9faut"><i class="fa fa-check"></i><b>3.2.2</b> Définir le répertoire de travail par défaut</a></li>
 <li class="chapter" data-level="3.2.3" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#importer-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.3</b> Importer des données</a></li>
 <li class="chapter" data-level="3.2.4" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#manipulation-de-variables-et-types-de-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.4</b> Manipulation de variables et types de données</a></li>
 <li class="chapter" data-level="3.2.5" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#structures-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.5</b> Structures des données</a></li>
@@ -174,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#pr%C3%A9-analyse"><i class="fa fa-check"></i><b>5.1</b> Pré-analyse</a></li>
 <li class="chapter" data-level="5.2" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#inspecter-la-qualit%C3%A9-filtrer-et-rogner"><i class="fa fa-check"></i><b>5.2</b> Inspecter la qualité, filtrer et rogner</a></li>
 <li class="chapter" data-level="5.3" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#retirer-les-erreurs-de-nucl%C3%A9otides"><i class="fa fa-check"></i><b>5.3</b> Retirer les erreurs de nucléotides</a></li>
-<li class="chapter" data-level="5.4" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#gn%C3%A9rer-la-matrice-dabondance-dasvs-par-%C3%A9chantillon"><i class="fa fa-check"></i><b>5.4</b> Gnérer la matrice d’abondance d’ASVs par échantillon</a></li>
+<li class="chapter" data-level="5.4" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#g%C3%A9n%C3%A9rer-la-matrice-dabondance-dasvs-par-%C3%A9chantillon"><i class="fa fa-check"></i><b>5.4</b> Générer la matrice d’abondance d’ASVs par échantillon</a></li>
 <li class="chapter" data-level="5.5" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#classification-taxonomique"><i class="fa fa-check"></i><b>5.5</b> Classification taxonomique</a></li>
 <li class="chapter" data-level="5.6" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#retirer-les-asvs-potentiellement-issue-de-contamination"><i class="fa fa-check"></i><b>5.6</b> Retirer les ASVs potentiellement issue de contamination</a></li>
 <li class="chapter" data-level="5.7" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#obtenir-les-s%C3%A9quences-dacides-nucl%C3%A9iques-adn"><i class="fa fa-check"></i><b>5.7</b> Obtenir les séquences d’acides nucléiques (ADN)</a></li>
@@ -215,15 +215,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="statistiques.html#cb36-1" tabindex="-1"></a><span class="fu">library</span>(vegan) <span class="co"># Plusieurs fonctions utiles en écologie </span></span>
 <span id="cb36-2"><a href="statistiques.html#cb36-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Manipulation de tableaux de données </span></span>
-<span id="cb36-3"><a href="statistiques.html#cb36-3" tabindex="-1"></a><span class="fu">library</span>(forcats) <span class="co"># Pour transformer des variable en facteurs avec un order précis &quot;fct_relevel&quot;</span></span>
+<span id="cb36-3"><a href="statistiques.html#cb36-3" tabindex="-1"></a><span class="fu">library</span>(forcats) <span class="co"># Pour transformer des variables en facteurs avec un ordre précis &quot;fct_relevel&quot;</span></span>
 <span id="cb36-4"><a href="statistiques.html#cb36-4" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># Manipulation de tableaux de données </span></span>
 <span id="cb36-5"><a href="statistiques.html#cb36-5" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># Manipulation de tableaux de données </span></span>
 <span id="cb36-6"><a href="statistiques.html#cb36-6" tabindex="-1"></a><span class="fu">library</span>(randomcoloR) <span class="co"># Générer palette de couleur </span></span>
 <span id="cb36-7"><a href="statistiques.html#cb36-7" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># Graphique </span></span>
-<span id="cb36-8"><a href="statistiques.html#cb36-8" tabindex="-1"></a><span class="fu">library</span>(ggtext) <span class="co"># Utiliser le format markdown dans les graphique (Genre en italique)</span></span>
+<span id="cb36-8"><a href="statistiques.html#cb36-8" tabindex="-1"></a><span class="fu">library</span>(ggtext) <span class="co"># Utiliser le format markdown dans les graphiques (Genre en italique)</span></span>
 <span id="cb36-9"><a href="statistiques.html#cb36-9" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># Pour combiner des graphiques </span></span>
-<span id="cb36-10"><a href="statistiques.html#cb36-10" tabindex="-1"></a><span class="fu">library</span>(export) <span class="co"># Pour enregistrer des graphique des bonne qualité </span></span>
-<span id="cb36-11"><a href="statistiques.html#cb36-11" tabindex="-1"></a><span class="fu">library</span>(reshape2) <span class="co"># Formatter des matrice à partir de tableaux </span></span>
+<span id="cb36-10"><a href="statistiques.html#cb36-10" tabindex="-1"></a><span class="fu">library</span>(export) <span class="co"># Pour enregistrer des graphiques des bonne qualité </span></span>
+<span id="cb36-11"><a href="statistiques.html#cb36-11" tabindex="-1"></a><span class="fu">library</span>(reshape2) <span class="co"># Formatter des matrices à partir de tableaux </span></span>
 <span id="cb36-12"><a href="statistiques.html#cb36-12" tabindex="-1"></a><span class="fu">library</span>(glue) <span class="co"># Copier-coller du texte ensemble </span></span></code></pre></div>
 </details>
 <div id="thème-pour-les-graphiques" class="section level2 hasAnchor" number="6.1">
@@ -280,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb39-14"><a href="statistiques.html#cb39-14" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Sum =</span> <span class="fu">sum</span>(Relative_abundance))</span>
 <span id="cb39-15"><a href="statistiques.html#cb39-15" tabindex="-1"></a><span class="co"># All good </span></span>
 <span id="cb39-16"><a href="statistiques.html#cb39-16" tabindex="-1"></a></span>
-<span id="cb39-17"><a href="statistiques.html#cb39-17" tabindex="-1"></a><span class="co"># Continuous - Identifions les 15 genres qui sont les plus abondant dans la mains et sous la langue. </span></span>
+<span id="cb39-17"><a href="statistiques.html#cb39-17" tabindex="-1"></a><span class="co"># Identifer les 15 genres qui sont les plus abondant dans la main et sous la langue. </span></span>
 <span id="cb39-18"><a href="statistiques.html#cb39-18" tabindex="-1"></a>df_top <span class="ot">=</span> df_agg <span class="sc">%&gt;%</span> </span>
 <span id="cb39-19"><a href="statistiques.html#cb39-19" tabindex="-1"></a>  <span class="fu">group_by</span>(Region, Taxonomie) <span class="sc">%&gt;%</span></span>
 <span id="cb39-20"><a href="statistiques.html#cb39-20" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_relabund =</span> <span class="fu">mean</span>(Relative_abundance)) <span class="sc">%&gt;%</span></span>
@@ -388,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb40-14"><a href="statistiques.html#cb40-14" tabindex="-1"></a></span>
 <span id="cb40-15"><a href="statistiques.html#cb40-15" tabindex="-1"></a>df_graphique <span class="ot">=</span> <span class="fu">merge</span>(df_shannon, meta_data, <span class="at">by =</span> <span class="st">&quot;Sample&quot;</span>)</span></code></pre></div>
 </details>
-<p>Maintenant que nous avons les valeurs de diversité (indice de Shannon) nous aimerions comparer ces valeurs en fonction de la région échantilloné (langue et mains). Pour ce faire, nous pouvons utiliser un test de t de student, mais nous devons avant nous assurer que nos données respectent les postulats de ce test (distribution normale et variance similaire)</p>
+<p>Maintenant que nous avons les valeurs de diversité (indice de Shannon) nous aimerions comparer ces valeurs en fonction de la région échantillonnée (langue et main). Pour ce faire, nous pouvons utiliser un test de t de student, mais nous devons avant nous assurer que nos données respectent les postulats de ce test (distribution normale et variance similaire)</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="statistiques.html#cb41-1" tabindex="-1"></a><span class="co"># Est ce que les données ont une distibution gausienne (normale) ? </span></span>
 <span id="cb41-2"><a href="statistiques.html#cb41-2" tabindex="-1"></a>valeur_shapiro<span class="ot">=</span><span class="fu">list</span>() <span class="co"># créer une liste vide </span></span>
@@ -399,11 +399,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb41-7"><a href="statistiques.html#cb41-7" tabindex="-1"></a>    valeur_shapiro <span class="ot">=</span> <span class="fu">append</span>(valeur_shapiro,ok<span class="sc">$</span>p.value)</span>
 <span id="cb41-8"><a href="statistiques.html#cb41-8" tabindex="-1"></a>}</span>
 <span id="cb41-9"><a href="statistiques.html#cb41-9" tabindex="-1"></a><span class="fu">data.frame</span>(valeur_shapiro) </span>
-<span id="cb41-10"><a href="statistiques.html#cb41-10" tabindex="-1"></a><span class="co"># Pour nos deux régions (langue et mains) la distribution des valeurs de Shannon suit une distribution normale </span></span>
+<span id="cb41-10"><a href="statistiques.html#cb41-10" tabindex="-1"></a><span class="co"># Pour nos deux régions (langue et main) la distribution des valeurs de Shannon suit une distribution normale </span></span>
 <span id="cb41-11"><a href="statistiques.html#cb41-11" tabindex="-1"></a><span class="co"># (p est supérieur à 0.05)</span></span>
 <span id="cb41-12"><a href="statistiques.html#cb41-12" tabindex="-1"></a></span>
 <span id="cb41-13"><a href="statistiques.html#cb41-13" tabindex="-1"></a><span class="co"># Est ce que la variance est similaire ? </span></span>
-<span id="cb41-14"><a href="statistiques.html#cb41-14" tabindex="-1"></a><span class="co"># Nous pouvons facilement tester la vairance avec la fonction var.test</span></span>
+<span id="cb41-14"><a href="statistiques.html#cb41-14" tabindex="-1"></a><span class="co"># Nous pouvons facilement tester la variance avec la fonction var.test</span></span>
 <span id="cb41-15"><a href="statistiques.html#cb41-15" tabindex="-1"></a><span class="fu">var.test</span>(Shannon <span class="sc">~</span> Region, df_graphique, </span>
 <span id="cb41-16"><a href="statistiques.html#cb41-16" tabindex="-1"></a>         <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
 <span id="cb41-17"><a href="statistiques.html#cb41-17" tabindex="-1"></a></span>
@@ -437,19 +437,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb43-2"><a href="statistiques.html#cb43-2" tabindex="-1"></a>asv_hellinger <span class="ot">=</span> <span class="fu">decostand</span>(df_asv, <span class="at">method =</span> <span class="st">&quot;hellinger&quot;</span>)</span>
 <span id="cb43-3"><a href="statistiques.html#cb43-3" tabindex="-1"></a><span class="co"># Calculer l&#39;indice de distance de Bray-Curtis entre chaque échantillon </span></span>
 <span id="cb43-4"><a href="statistiques.html#cb43-4" tabindex="-1"></a>dist <span class="ot">=</span> <span class="fu">vegdist</span>(asv_hellinger, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>)</span>
-<span id="cb43-5"><a href="statistiques.html#cb43-5" tabindex="-1"></a><span class="co"># Générer l&#39;ordination avec les fonction R de bases.</span></span>
+<span id="cb43-5"><a href="statistiques.html#cb43-5" tabindex="-1"></a><span class="co"># Générer l&#39;ordination avec la fonction R cmdscale</span></span>
 <span id="cb43-6"><a href="statistiques.html#cb43-6" tabindex="-1"></a>PCOA <span class="ot">=</span> <span class="fu">cmdscale</span>(dist, <span class="at">eig=</span><span class="cn">TRUE</span>, <span class="at">add=</span><span class="cn">TRUE</span>) </span>
 <span id="cb43-7"><a href="statistiques.html#cb43-7" tabindex="-1"></a><span class="co"># On extrait les coordonnées des points </span></span>
 <span id="cb43-8"><a href="statistiques.html#cb43-8" tabindex="-1"></a>position <span class="ot">=</span> PCOA<span class="sc">$</span>points </span>
 <span id="cb43-9"><a href="statistiques.html#cb43-9" tabindex="-1"></a><span class="co"># Changer le nom des colonnes </span></span>
 <span id="cb43-10"><a href="statistiques.html#cb43-10" tabindex="-1"></a><span class="fu">colnames</span>(position) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Axe.1&quot;</span>, <span class="st">&quot;Axe.2&quot;</span>) </span>
-<span id="cb43-11"><a href="statistiques.html#cb43-11" tabindex="-1"></a><span class="co"># get percentage of variation explained by each axis </span></span>
-<span id="cb43-12"><a href="statistiques.html#cb43-12" tabindex="-1"></a>percent_explained <span class="ot">=</span> <span class="dv">100</span><span class="sc">*</span>PCOA<span class="sc">$</span>eig<span class="sc">/</span><span class="fu">sum</span>(PCOA<span class="sc">$</span>eig) </span>
-<span id="cb43-13"><a href="statistiques.html#cb43-13" tabindex="-1"></a><span class="co"># reduce number of digits (arrondir)</span></span>
+<span id="cb43-11"><a href="statistiques.html#cb43-11" tabindex="-1"></a><span class="co"># Extraire le pourcentage de variation expliqué par les deux premiers axes </span></span>
+<span id="cb43-12"><a href="statistiques.html#cb43-12" tabindex="-1"></a>percent_explained <span class="ot">=</span> <span class="dv">100</span> <span class="sc">*</span> PCOA<span class="sc">$</span>eig <span class="sc">/</span> <span class="fu">sum</span>(PCOA<span class="sc">$</span>eig) </span>
+<span id="cb43-13"><a href="statistiques.html#cb43-13" tabindex="-1"></a><span class="co"># Arrondir </span></span>
 <span id="cb43-14"><a href="statistiques.html#cb43-14" tabindex="-1"></a>reduced_percent <span class="ot">=</span> <span class="fu">format</span>(<span class="fu">round</span>(percent_explained[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">nsmall =</span> <span class="dv">1</span>, <span class="at">trim =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb43-15"><a href="statistiques.html#cb43-15" tabindex="-1"></a><span class="co"># Generate pretty labels for plot </span></span>
+<span id="cb43-15"><a href="statistiques.html#cb43-15" tabindex="-1"></a><span class="co"># Générer des beaux titres pour les axes  </span></span>
 <span id="cb43-16"><a href="statistiques.html#cb43-16" tabindex="-1"></a>pretty_labs <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">glue</span>(<span class="st">&quot;Axe 1 ({reduced_percent[1]}%)&quot;</span>), <span class="fu">glue</span>(<span class="st">&quot;Axe 2 ({reduced_percent[2]}%)&quot;</span>)) </span>
-<span id="cb43-17"><a href="statistiques.html#cb43-17" tabindex="-1"></a><span class="co"># combine PCOA results with metadata </span></span>
+<span id="cb43-17"><a href="statistiques.html#cb43-17" tabindex="-1"></a><span class="co"># Combiner les résultats de la PCOA avec les méta données  </span></span>
 <span id="cb43-18"><a href="statistiques.html#cb43-18" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">merge</span>(position, meta_data, <span class="at">by =</span> <span class="dv">0</span>) </span></code></pre></div>
 </details>
 <p>PERMANOVA et betadisper</p>

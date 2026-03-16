@@ -29,11 +29,11 @@ df_raw = read.csv("https://raw.githubusercontent.com/karinevilleneuve/BIO1410-20
 ```
 
 
-Maintenant que vous avez importé le tableau de données, vous devez utiliser R pour réaliser chacune de des étapes suivantes. Pour vous aidez vous pouvez utiliser l'intelligence artificielle, questionner vos démonstratrices, revoir les fonctiosn présentées précédemment, analyser le code des sections suivante, etc. Ci-dessous vous trouverez une des solutions possibles pour compléter chacune des étapes dans un block chaché, simplement appuyer sur **▶ Code ** pour le révéler. Il ya plus d"une façon d'arriver à un même résultat alors n'hésitez pas à essayer et comparer diverses méthodes. 
+Maintenant que vous avez importé le tableau de données, vous devez utiliser R pour réaliser chacune de des étapes suivantes. Pour vous aide5 vous pouvez utiliser l'intelligence artificielle, questionner vos démonstratrices, revoir les fonctions présentées précédemment, analyser le code des sections suivante, etc. Ci-dessous vous trouverez une des solutions possibles pour compléter chacune des étapes dans un block caché, simplement appuyer sur **▶ Code ** pour le révéler. Il y a plus d'une façon d'arriver à un même résultat alors n'hésitez pas à essayer et comparer diverses méthodes. 
 
 1. Filtrer le tableau de données pour conserver uniquement les séquences appartenant à votre scientifique. 
 
-2. Puisque noous voulons illustrer uniquement le 10 genres bactériens les plus abondant, il faut, pour chaque région, grouper ensemble les ASVs appartenement à un même genre et additionner leur valeur d'abondance. Les valeurs obtenues doivent ensuite être transformées en abondance relative. Finalement, les genres bactériens qui ne font pas partie des 10 genres les plus abondants doivent être regroupés sous la catégories "Autres". 
+2. Puisque nous voulons illustrer uniquement les 10 genres bactériens les plus abondant, il faut, pour chaque région, grouper ensemble les ASVs appartenant à un même genre et additionner leur valeur d'abondance. Les valeurs obtenues doivent ensuite être transformées en abondance relative. Finalement, les genres bactériens qui ne font pas partie des 10 genres les plus abondants doivent être regroupés sous la catégorie "Autres". 
 
 3. Générer le graphique. 
 
@@ -49,7 +49,7 @@ df_sub = subset(df_raw, Scientifique == "Leone Norwood Farrell") # (2)
 #### ---- explication  ---- ####
 
 # (1) Afficher les différentes options de noms de scientifique 
-# (2) Filtrer le tableau de données en inscrivant entre les guillements le nom de la scientifique qui vous a été assignée 
+# (2) Filtrer le tableau de données en inscrivant entre les guillemets le nom de la scientifique qui vous a été assignée 
 ```
 
 **Étape 2. Grouper et calculer l'abondance relative**
@@ -71,9 +71,9 @@ valider = df_abond_rel %>% # (4)
 
 # (1) Puisqu'il est impossible de diviser 0, nous retirons les ASVs qui ont une abondance de 0 
 
-# (2) Pour réaliser les opérations mathématiquement séparémment pour chaque région nous devons 
-#     utilisons la fonction group_by() pour indiquer à R dans quel colonne se trouve nos catégories (régions)
-#     qu'il doit traiter séparémment.
+# (2) Pour réaliser les opérations mathématiquement séparément pour chaque région nous 
+#     utilisons la fonction group_by() pour indiquer à R dans quelle colonne se trouve nos catégories (régions)
+#     qu'il doit traiter séparément.
 
 # (3) Pour obtenir l'abondance relative nous créons une nouvelle colonne "Abondance_relat" qui est 
 #     le résultats de Abundance / sum(Abundance)
@@ -133,7 +133,7 @@ ggsave(graph, filename = "abondance_relative.pdf", width = 8.5, height = 4, unit
 
 Maintenant que vous pouvez visuellement constater quel ASVs sont les plus présents, nous voulons obtenir une classification plus précise que le Genre pour l'ASV de votre choix. Pour une classification jusqu'à l'espèce et peut-être même à la souche, nous utilisons le logiciel en ligne [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) du National Institute of Health (NIH) qui prend comme input une séquence d'ADN. 
 
-Une fois de plus, vous devez utiliser vos nouvelles connaissances en R pour produire un fichier de type fasta contenant la séquence d'ADN de l'ASV que vous voulez classifier avec BLAST. Comme précédéement la solution se trouve ci-dessous. 
+Une fois de plus, vous devez utiliser vos nouvelles connaissances en R pour produire un fichier de type fasta contenant la séquence d'ADN de l'ASV que vous voulez classifier avec BLAST. Comme précédemment la solution se trouve ci-dessous. 
 
 **Solution** 
 
@@ -149,9 +149,9 @@ dataframe2fas(DNA, file = "output_sequences.fasta") # (4)
 #### ---- explication  ---- ####
 
 # (1) Inscrire entre les guillemets l'ID de l'ASV d'intérêt puis comme précédemment, 
-#     nous utilison filter() pour filtrer le tableau de données 
+#     nous utilisons filter() pour filtrer le tableau de données 
 # (2) Nous sélectionnons uniquement les colonnes d'intérêt (OTU et DNA_string)
-# (3) Nous spécifions unique() au cas ou l'ASV serait présent dans les deux régions 
+# (3) Nous spécifions unique() au cas où l'ASV serait présent dans les deux régions 
 #     (inutile d'avoir deux fois la même séquence)
 # (4) Générer le fichier fasta
 ```
@@ -161,7 +161,7 @@ dataframe2fas(DNA, file = "output_sequences.fasta") # (4)
 1. Se rendre sur le logiciel en ligne [BLAST du NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
 2. Choisir l'analyse `Nucleotide BLAST` (`BLASTn`) 
 3. Sélectionner `Choose file` et sélectionner le fihcier produits  
-4. Choisir la banque de données appropriée à laquelle comparer votre séquence 
+4. Choisir la banque de données appropriée à laquelle comparer votre séquence 
   - Utiliser la collection de nucléotides 
   - Exclure les organismes environnementaux et non cultivés
   - Choisir l'algorithme de BLAST désiré (essayer à la fois les algorithmes` BLASTn` et` MegaBLAST`

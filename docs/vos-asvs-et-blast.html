@@ -157,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#utliser-r-markdowm"><i class="fa fa-check"></i><b>3.2</b> Utliser R Markdowm</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#bloc-de-codes"><i class="fa fa-check"></i><b>3.2.1</b> Bloc de codes</a></li>
-<li class="chapter" data-level="3.2.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#d%C3%A9finir-le-r%C3%A9pertoire-de-travail-par-d%C3%A9fault"><i class="fa fa-check"></i><b>3.2.2</b> Définir le répertoire de travail par défault</a></li>
+<li class="chapter" data-level="3.2.2" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#d%C3%A9finir-le-r%C3%A9pertoire-de-travail-par-d%C3%A9faut"><i class="fa fa-check"></i><b>3.2.2</b> Définir le répertoire de travail par défaut</a></li>
 <li class="chapter" data-level="3.2.3" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#importer-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.3</b> Importer des données</a></li>
 <li class="chapter" data-level="3.2.4" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#manipulation-de-variables-et-types-de-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.4</b> Manipulation de variables et types de données</a></li>
 <li class="chapter" data-level="3.2.5" data-path="utiliser-rstudio-et-r-mardown.html"><a href="utiliser-rstudio-et-r-mardown.html#structures-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.5</b> Structures des données</a></li>
@@ -174,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#pr%C3%A9-analyse"><i class="fa fa-check"></i><b>5.1</b> Pré-analyse</a></li>
 <li class="chapter" data-level="5.2" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#inspecter-la-qualit%C3%A9-filtrer-et-rogner"><i class="fa fa-check"></i><b>5.2</b> Inspecter la qualité, filtrer et rogner</a></li>
 <li class="chapter" data-level="5.3" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#retirer-les-erreurs-de-nucl%C3%A9otides"><i class="fa fa-check"></i><b>5.3</b> Retirer les erreurs de nucléotides</a></li>
-<li class="chapter" data-level="5.4" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#gn%C3%A9rer-la-matrice-dabondance-dasvs-par-%C3%A9chantillon"><i class="fa fa-check"></i><b>5.4</b> Gnérer la matrice d’abondance d’ASVs par échantillon</a></li>
+<li class="chapter" data-level="5.4" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#g%C3%A9n%C3%A9rer-la-matrice-dabondance-dasvs-par-%C3%A9chantillon"><i class="fa fa-check"></i><b>5.4</b> Générer la matrice d’abondance d’ASVs par échantillon</a></li>
 <li class="chapter" data-level="5.5" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#classification-taxonomique"><i class="fa fa-check"></i><b>5.5</b> Classification taxonomique</a></li>
 <li class="chapter" data-level="5.6" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#retirer-les-asvs-potentiellement-issue-de-contamination"><i class="fa fa-check"></i><b>5.6</b> Retirer les ASVs potentiellement issue de contamination</a></li>
 <li class="chapter" data-level="5.7" data-path="traitement-des-fastqs.html"><a href="traitement-des-fastqs.html#obtenir-les-s%C3%A9quences-dacides-nucl%C3%A9iques-adn"><i class="fa fa-check"></i><b>5.7</b> Obtenir les séquences d’acides nucléiques (ADN)</a></li>
@@ -235,10 +235,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-17"><a href="vos-asvs-et-blast.html#cb14-17" tabindex="-1"></a><span class="co"># Charger le tableau de données </span></span>
 <span id="cb14-18"><a href="vos-asvs-et-blast.html#cb14-18" tabindex="-1"></a>df_raw <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/karinevilleneuve/BIO1410-2026/refs/heads/main/data/bio1410_2026_ADN.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </details>
-<p>Maintenant que vous avez importé le tableau de données, vous devez utiliser R pour réaliser chacune de des étapes suivantes. Pour vous aidez vous pouvez utiliser l’intelligence artificielle, questionner vos démonstratrices, revoir les fonctiosn présentées précédemment, analyser le code des sections suivante, etc. Ci-dessous vous trouverez une des solutions possibles pour compléter chacune des étapes dans un block chaché, simplement appuyer sur <strong>▶ Code </strong> pour le révéler. Il ya plus d”une façon d’arriver à un même résultat alors n’hésitez pas à essayer et comparer diverses méthodes.</p>
+<p>Maintenant que vous avez importé le tableau de données, vous devez utiliser R pour réaliser chacune de des étapes suivantes. Pour vous aide5 vous pouvez utiliser l’intelligence artificielle, questionner vos démonstratrices, revoir les fonctions présentées précédemment, analyser le code des sections suivante, etc. Ci-dessous vous trouverez une des solutions possibles pour compléter chacune des étapes dans un block caché, simplement appuyer sur <strong>▶ Code </strong> pour le révéler. Il y a plus d’une façon d’arriver à un même résultat alors n’hésitez pas à essayer et comparer diverses méthodes.</p>
 <ol style="list-style-type: decimal">
 <li><p>Filtrer le tableau de données pour conserver uniquement les séquences appartenant à votre scientifique.</p></li>
-<li><p>Puisque noous voulons illustrer uniquement le 10 genres bactériens les plus abondant, il faut, pour chaque région, grouper ensemble les ASVs appartenement à un même genre et additionner leur valeur d’abondance. Les valeurs obtenues doivent ensuite être transformées en abondance relative. Finalement, les genres bactériens qui ne font pas partie des 10 genres les plus abondants doivent être regroupés sous la catégories “Autres”.</p></li>
+<li><p>Puisque nous voulons illustrer uniquement les 10 genres bactériens les plus abondant, il faut, pour chaque région, grouper ensemble les ASVs appartenant à un même genre et additionner leur valeur d’abondance. Les valeurs obtenues doivent ensuite être transformées en abondance relative. Finalement, les genres bactériens qui ne font pas partie des 10 genres les plus abondants doivent être regroupés sous la catégorie “Autres”.</p></li>
 <li><p>Générer le graphique.</p></li>
 </ol>
 <p><strong>Étape 1. Filtrer le tableau de données</strong></p>
@@ -251,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-6"><a href="vos-asvs-et-blast.html#cb15-6" tabindex="-1"></a><span class="do">#### ---- explication  ---- ####</span></span>
 <span id="cb15-7"><a href="vos-asvs-et-blast.html#cb15-7" tabindex="-1"></a></span>
 <span id="cb15-8"><a href="vos-asvs-et-blast.html#cb15-8" tabindex="-1"></a><span class="co"># (1) Afficher les différentes options de noms de scientifique </span></span>
-<span id="cb15-9"><a href="vos-asvs-et-blast.html#cb15-9" tabindex="-1"></a><span class="co"># (2) Filtrer le tableau de données en inscrivant entre les guillements le nom de la scientifique qui vous a été assignée </span></span></code></pre></div>
+<span id="cb15-9"><a href="vos-asvs-et-blast.html#cb15-9" tabindex="-1"></a><span class="co"># (2) Filtrer le tableau de données en inscrivant entre les guillemets le nom de la scientifique qui vous a été assignée </span></span></code></pre></div>
 </details>
 <p><strong>Étape 2. Grouper et calculer l’abondance relative</strong></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
@@ -271,9 +271,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-14"><a href="vos-asvs-et-blast.html#cb16-14" tabindex="-1"></a></span>
 <span id="cb16-15"><a href="vos-asvs-et-blast.html#cb16-15" tabindex="-1"></a><span class="co"># (1) Puisqu&#39;il est impossible de diviser 0, nous retirons les ASVs qui ont une abondance de 0 </span></span>
 <span id="cb16-16"><a href="vos-asvs-et-blast.html#cb16-16" tabindex="-1"></a></span>
-<span id="cb16-17"><a href="vos-asvs-et-blast.html#cb16-17" tabindex="-1"></a><span class="co"># (2) Pour réaliser les opérations mathématiquement séparémment pour chaque région nous devons </span></span>
-<span id="cb16-18"><a href="vos-asvs-et-blast.html#cb16-18" tabindex="-1"></a><span class="co">#     utilisons la fonction group_by() pour indiquer à R dans quel colonne se trouve nos catégories (régions)</span></span>
-<span id="cb16-19"><a href="vos-asvs-et-blast.html#cb16-19" tabindex="-1"></a><span class="co">#     qu&#39;il doit traiter séparémment.</span></span>
+<span id="cb16-17"><a href="vos-asvs-et-blast.html#cb16-17" tabindex="-1"></a><span class="co"># (2) Pour réaliser les opérations mathématiquement séparément pour chaque région nous </span></span>
+<span id="cb16-18"><a href="vos-asvs-et-blast.html#cb16-18" tabindex="-1"></a><span class="co">#     utilisons la fonction group_by() pour indiquer à R dans quelle colonne se trouve nos catégories (régions)</span></span>
+<span id="cb16-19"><a href="vos-asvs-et-blast.html#cb16-19" tabindex="-1"></a><span class="co">#     qu&#39;il doit traiter séparément.</span></span>
 <span id="cb16-20"><a href="vos-asvs-et-blast.html#cb16-20" tabindex="-1"></a></span>
 <span id="cb16-21"><a href="vos-asvs-et-blast.html#cb16-21" tabindex="-1"></a><span class="co"># (3) Pour obtenir l&#39;abondance relative nous créons une nouvelle colonne &quot;Abondance_relat&quot; qui est </span></span>
 <span id="cb16-22"><a href="vos-asvs-et-blast.html#cb16-22" tabindex="-1"></a><span class="co">#     le résultats de Abundance / sum(Abundance)</span></span>
@@ -329,7 +329,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="blast" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> BLAST<a href="vos-asvs-et-blast.html#blast" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Maintenant que vous pouvez visuellement constater quel ASVs sont les plus présents, nous voulons obtenir une classification plus précise que le Genre pour l’ASV de votre choix. Pour une classification jusqu’à l’espèce et peut-être même à la souche, nous utilisons le logiciel en ligne <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> du National Institute of Health (NIH) qui prend comme input une séquence d’ADN.</p>
-<p>Une fois de plus, vous devez utiliser vos nouvelles connaissances en R pour produire un fichier de type fasta contenant la séquence d’ADN de l’ASV que vous voulez classifier avec BLAST. Comme précédéement la solution se trouve ci-dessous.</p>
+<p>Une fois de plus, vous devez utiliser vos nouvelles connaissances en R pour produire un fichier de type fasta contenant la séquence d’ADN de l’ASV que vous voulez classifier avec BLAST. Comme précédemment la solution se trouve ci-dessous.</p>
 <p><strong>Solution</strong></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r fold-hide"><code class="sourceCode r"><span id="cb18-1"><a href="vos-asvs-et-blast.html#cb18-1" tabindex="-1"></a><span class="do">#### ---- Code  ---- ####</span></span>
@@ -343,9 +343,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-9"><a href="vos-asvs-et-blast.html#cb18-9" tabindex="-1"></a><span class="do">#### ---- explication  ---- ####</span></span>
 <span id="cb18-10"><a href="vos-asvs-et-blast.html#cb18-10" tabindex="-1"></a></span>
 <span id="cb18-11"><a href="vos-asvs-et-blast.html#cb18-11" tabindex="-1"></a><span class="co"># (1) Inscrire entre les guillemets l&#39;ID de l&#39;ASV d&#39;intérêt puis comme précédemment, </span></span>
-<span id="cb18-12"><a href="vos-asvs-et-blast.html#cb18-12" tabindex="-1"></a><span class="co">#     nous utilison filter() pour filtrer le tableau de données </span></span>
+<span id="cb18-12"><a href="vos-asvs-et-blast.html#cb18-12" tabindex="-1"></a><span class="co">#     nous utilisons filter() pour filtrer le tableau de données </span></span>
 <span id="cb18-13"><a href="vos-asvs-et-blast.html#cb18-13" tabindex="-1"></a><span class="co"># (2) Nous sélectionnons uniquement les colonnes d&#39;intérêt (OTU et DNA_string)</span></span>
-<span id="cb18-14"><a href="vos-asvs-et-blast.html#cb18-14" tabindex="-1"></a><span class="co"># (3) Nous spécifions unique() au cas ou l&#39;ASV serait présent dans les deux régions </span></span>
+<span id="cb18-14"><a href="vos-asvs-et-blast.html#cb18-14" tabindex="-1"></a><span class="co"># (3) Nous spécifions unique() au cas où l&#39;ASV serait présent dans les deux régions </span></span>
 <span id="cb18-15"><a href="vos-asvs-et-blast.html#cb18-15" tabindex="-1"></a><span class="co">#     (inutile d&#39;avoir deux fois la même séquence)</span></span>
 <span id="cb18-16"><a href="vos-asvs-et-blast.html#cb18-16" tabindex="-1"></a><span class="co"># (4) Générer le fichier fasta</span></span></code></pre></div>
 </details>
@@ -356,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Choisir l’analyse <code>Nucleotide BLAST</code> (<code>BLASTn</code>)</li>
 <li>Sélectionner <code>Choose file</code> et sélectionner le fihcier produits<br />
 </li>
-<li>Choisir la banque de données appropriée à laquelle comparer votre séquence</li>
+<li>Choisir la banque de données appropriée à laquelle comparer votre séquence</li>
 </ol>
 <ul>
 <li>Utiliser la collection de nucléotides</li>
