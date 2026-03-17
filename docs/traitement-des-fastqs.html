@@ -289,14 +289,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>truncLen : définit à quelle longueur les séquences vont être tronquées. Les séquences plus courtes que la longueur sont éliminées.</li>
 <li>trimLeft : définit la longueur que l’on coupe du côté 5’ des séquences. Cela permet d’enlever les amorces si elles n’ont pas été préalablement retiré.
 <ul>
-<li>799F: AACMGGATTAGATACCCKG = 16 nucléotides /</li>
+<li>799F: AACMGGATTAGATACCCKG = 19 nucléotides /</li>
 <li>1115R: AGGGTTGCGCTCGTTG = 19 nucléotides</li>
 </ul></li>
 <li>maxEE : définit le nombre maximum d’<em>erreurs attendues</em> autorisées dans une lecture. Ce filtre se base sur l’indice Q score. Plus on augmente le chiffre, moins on est strict.</li>
 </ul>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="traitement-des-fastqs.html#cb23-1" tabindex="-1"></a><span class="co"># Filtrer les séquences </span></span>
-<span id="cb23-2"><a href="traitement-des-fastqs.html#cb23-2" tabindex="-1"></a>out <span class="ot">=</span> <span class="fu">filterAndTrim</span>(fnFs, filtFs, fnRs, filtRs, <span class="at">trimLeft =</span> <span class="fu">c</span>(<span class="dv">16</span>,<span class="dv">19</span>), <span class="at">truncLen=</span><span class="fu">c</span>(<span class="dv">300</span>,<span class="dv">280</span>), </span>
+<span id="cb23-2"><a href="traitement-des-fastqs.html#cb23-2" tabindex="-1"></a>out <span class="ot">=</span> <span class="fu">filterAndTrim</span>(fnFs, filtFs, fnRs, filtRs, <span class="at">trimLeft =</span> <span class="fu">c</span>(<span class="dv">19</span>,<span class="dv">19</span>), <span class="at">truncLen=</span><span class="fu">c</span>(<span class="dv">300</span>,<span class="dv">280</span>), </span>
 <span id="cb23-3"><a href="traitement-des-fastqs.html#cb23-3" tabindex="-1"></a>                     <span class="at">maxN=</span><span class="dv">0</span>, <span class="at">maxEE=</span><span class="dv">2</span>, <span class="at">truncQ=</span><span class="dv">2</span>,<span class="at">rm.phix=</span><span class="cn">TRUE</span>, </span>
 <span id="cb23-4"><a href="traitement-des-fastqs.html#cb23-4" tabindex="-1"></a>                     <span class="at">compress=</span><span class="cn">TRUE</span>, <span class="at">multithread=</span><span class="cn">TRUE</span>) </span></code></pre></div>
 </details>

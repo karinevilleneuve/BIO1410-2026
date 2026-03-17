@@ -51,6 +51,8 @@ custom_theme = function(){
 Importer le tableau de données
 ```{r, eval=FALSE}
 df = readRDS("data/df.Rds")
+# ou 
+df = readRDS(gzcon(url("https://raw.githubusercontent.com/karinevilleneuve/BIO1410-2026/refs/heads/main/data/df.Rds")))
 ```
 
 

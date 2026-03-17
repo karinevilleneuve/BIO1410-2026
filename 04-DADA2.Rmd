@@ -72,13 +72,13 @@ Nous utilisons la fonction `filterAndTrim` afin de filtrer et rogner les séquen
 - truncQ : définit un l’indice Q score minimale. A la première instance d’un score de qualité inférieur ou égal à truncQ, la séquence est tronquée.
 - truncLen : définit à quelle longueur les séquences vont être tronquées. Les séquences plus courtes que la longueur sont éliminées.
 - trimLeft : définit la longueur que l’on coupe du côté 5’ des séquences. Cela permet d’enlever les amorces si elles n'ont pas été préalablement retiré.
-  - 799F: AACMGGATTAGATACCCKG = 16 nucléotides / 
+  - 799F: AACMGGATTAGATACCCKG = 19 nucléotides / 
   - 1115R: AGGGTTGCGCTCGTTG = 19 nucléotides
 - maxEE : définit le nombre maximum d’*erreurs attendues* autorisées dans une lecture. Ce filtre se base sur l’indice Q score. Plus on augmente le chiffre, moins on est strict.
 
 ```{r, eval = FALSE}
 # Filtrer les séquences 
-out = filterAndTrim(fnFs, filtFs, fnRs, filtRs, trimLeft = c(16,19), truncLen=c(300,280), 
+out = filterAndTrim(fnFs, filtFs, fnRs, filtRs, trimLeft = c(19,19), truncLen=c(300,280), 
                      maxN=0, maxEE=2, truncQ=2,rm.phix=TRUE, 
                      compress=TRUE, multithread=TRUE) 
 ```

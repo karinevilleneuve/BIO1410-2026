@@ -160,13 +160,19 @@ dataframe2fas(DNA, file = "output_sequences.fasta") # (4)
 
 1. Se rendre sur le logiciel en ligne [BLAST du NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
 2. Choisir l'analyse `Nucleotide BLAST` (`BLASTn`) 
-3. Sélectionner `Choose file` et sélectionner le fihcier produits  
-4. Choisir la banque de données appropriée à laquelle comparer votre séquence 
+3. Sélectionner `Choose file` et sélectionner le fichier produits  
+4. Modifier les paramètres de la recherche BLAST
   - Utiliser la collection de nucléotides 
   - Exclure les organismes environnementaux et non cultivés
   - Choisir l'algorithme de BLAST désiré (essayer à la fois les algorithmes` BLASTn` et` MegaBLAST`
 5. Lancer l'analyse (bouton `BLAST`). 
-6. Après lecture et analyse du fichier sortant effectuer un imprime-écran incluant les trois premiers résultats de l’analyse (trois premiers taxons identifiés). Vous devrez inclure cette image dans l’annexe de votre travail. Réalisez un tableau à inclure dans le corps du texte comprenant les colonnes suivantes; 
+
+```{r echo=FALSE, out.width = "100%", fig.align = "center", out.lenght = "100%"}
+knitr::include_graphics("data/BLAST.png")
+```
+
+
+6. Pour votre rapport, incluez un imprime-écran incluant les trois premiers résultats de l’analyse (trois premiers taxons identifiés). Vous devrez inclure cette image dans l’annexe de votre travail. Réalisez un tableau à inclure dans le corps du texte comprenant les colonnes suivantes; 
   - Per. Ident.
   - Query cover
   - E.value
@@ -176,7 +182,4 @@ Vous pouvez aussi consulter pour votre plaisir personnel :
 - L’arbre phylogénétique (Distance tree of results) 
 - Les résultats de l'alignement (MSA viewer)
 
-```{r echo=FALSE, out.width = "100%", fig.align = "center", out.lenght = "100%"}
-knitr::include_graphics("data/BLAST.png")
-```
 
