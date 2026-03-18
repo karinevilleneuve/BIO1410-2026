@@ -50,8 +50,6 @@ custom_theme = function(){
 
 Importer le tableau de données
 ```{r, eval=FALSE}
-df = readRDS("data/df.Rds")
-# ou 
 df = readRDS(gzcon(url("https://raw.githubusercontent.com/karinevilleneuve/BIO1410-2026/refs/heads/main/data/df.Rds")))
 ```
 
@@ -84,7 +82,7 @@ df_top = df_agg %>%
 # custom_colors = distinctColorPalette(k = length(unique(df_top$Taxonomie)))
 # color_names = unique(df_top$Taxonomie)
 # my_palette = setNames(custom_colors, color_names)
-my_palette = readRDS( "data/colors_abondance_relative.Rds")
+my_palette = readRDS(gzcon(url("https://raw.githubusercontent.com/karinevilleneuve/BIO1410-2026/refs/heads/main/data/colors_abondance_relative.Rds")))
 my_palette[["Autres bactéries"]] = "lightgrey"
 #saveRDS(my_palette, "data/colors_abondance_relative.Rds")
 

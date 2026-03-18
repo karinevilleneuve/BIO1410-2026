@@ -258,9 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 <p>Importer le tableau de données</p>
 <details class=chunk-details open><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="statistiques.html#cb38-1" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/df.Rds&quot;</span>)</span>
-<span id="cb38-2"><a href="statistiques.html#cb38-2" tabindex="-1"></a><span class="co"># ou </span></span>
-<span id="cb38-3"><a href="statistiques.html#cb38-3" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="fu">gzcon</span>(<span class="fu">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/karinevilleneuve/BIO1410-2026/refs/heads/main/data/df.Rds&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="statistiques.html#cb38-1" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="fu">gzcon</span>(<span class="fu">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/karinevilleneuve/BIO1410-2026/refs/heads/main/data/df.Rds&quot;</span>)))</span></code></pre></div>
 </details>
 </div>
 <div id="abondances-relatives-des-principaux-genres" class="section level2 hasAnchor" number="6.2">
@@ -292,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb39-24"><a href="statistiques.html#cb39-24" tabindex="-1"></a><span class="co"># custom_colors = distinctColorPalette(k = length(unique(df_top$Taxonomie)))</span></span>
 <span id="cb39-25"><a href="statistiques.html#cb39-25" tabindex="-1"></a><span class="co"># color_names = unique(df_top$Taxonomie)</span></span>
 <span id="cb39-26"><a href="statistiques.html#cb39-26" tabindex="-1"></a><span class="co"># my_palette = setNames(custom_colors, color_names)</span></span>
-<span id="cb39-27"><a href="statistiques.html#cb39-27" tabindex="-1"></a>my_palette <span class="ot">=</span> <span class="fu">readRDS</span>( <span class="st">&quot;data/colors_abondance_relative.Rds&quot;</span>)</span>
+<span id="cb39-27"><a href="statistiques.html#cb39-27" tabindex="-1"></a>my_palette <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="fu">gzcon</span>(<span class="fu">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/karinevilleneuve/BIO1410-2026/refs/heads/main/data/colors_abondance_relative.Rds&quot;</span>)))</span>
 <span id="cb39-28"><a href="statistiques.html#cb39-28" tabindex="-1"></a>my_palette[[<span class="st">&quot;Autres bactéries&quot;</span>]] <span class="ot">=</span> <span class="st">&quot;lightgrey&quot;</span></span>
 <span id="cb39-29"><a href="statistiques.html#cb39-29" tabindex="-1"></a><span class="co">#saveRDS(my_palette, &quot;data/colors_abondance_relative.Rds&quot;)</span></span>
 <span id="cb39-30"><a href="statistiques.html#cb39-30" tabindex="-1"></a></span>
